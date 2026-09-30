@@ -1,28 +1,28 @@
-# emfau — Roadmap zur BlueYard-nahen Landingpage
+# emfau — Roadmap zur interaktiven Landingpage
 
 Stand: 30.09.2026  
-Projektordner: `C:\Users\madde\Documents\bluebyte`  
-Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. Der erste Farbwechsel verzerrt jetzt beide vollständigen Weltbilder. Nächster Umsetzungsblock: K4.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder sind keine Abnahme der Referenznähe.
+Projektordner: bestehender lokaler Checkout; Repo-Name und Deployment-Pfad vorerst unverändert.
+Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. Der erste Farbwechsel verzerrt jetzt beide vollständigen Weltbilder. Nächster Umsetzungsblock: K4.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
 
 ## Verbindliche Arbeitsreihenfolge
 
 | Reihenfolge | Arbeitspaket | Ergebnis / Prüfschwerpunkt |
 |---|---|---|
 | 1 | K2 — Steuerung und Renderaufbau | Implementiert und lokal geprüft; gemeinsame Eingabedaten, getrennte Weltbilder und zentrale Farbausgabe |
-| 2 | K3 — Liquid-Übergang | Implementiert und lokal geprüft; genaue Referenzabstimmung und Prüfung mit finalen Modellen offen |
+| 2 | K3 — Liquid-Übergang | Implementiert und lokal geprüft; genaue visuelle Abstimmung und Prüfung mit finalen Modellen offen |
 | 3 | K4 — Partikelinteraktion | Lokale Reaktion auf Maus und Scrollimpulse mit gedämpftem Nachlauf |
-| 4 | Bulk 8 — Web / Computation | Räumliche Faserbündel, Licht, Karten und vollständiger erster Welt-Einstieg |
+| 4 | Bulk 8 — Web-Welt | Räumliche Faserbündel, Licht, Karten und vollständiger erster Welt-Einstieg |
 | 5 | Meilenstein G1 | Gesamten Weg Intro → Manifest → Auswahl → Liquid → Web als Bewegung vergleichen |
 | 6 | Bulks 9–11 | Eigenständige Games-/Labs-Modelle, deren Übergänge und Finale |
 | 7 | Bulks 12–14 | Integration, Geräte-QA, vollständige Bewegungsabnahme und Veröffentlichung nach Freigabe |
 
-Bulk 4 wird für jeden neuen Effekt um dessen Referenzbelege ergänzt. Licht, Farben und Laufzeitmessung gehören bereits zu K2–K4 und jedem Modellbulk; Bulk 13 bündelt die abschließende Geräteprüfung. Die neue Reihenfolge ersetzt ältere „als Nächstes Bulk 8“-Vermerke im Änderungsprotokoll.
+Bulk 4 wird für jeden neuen Effekt um dessen Prüfbelege ergänzt. Externe Referenzaufnahmen und ausführliche Vergleichsanalysen bleiben lokal außerhalb des öffentlichen Repositories. Licht, Farben und Laufzeitmessung gehören bereits zu K2–K4 und jedem Modellbulk; Bulk 13 bündelt die abschließende Geräteprüfung. Die neue Reihenfolge ersetzt ältere „als Nächstes Bulk 8“-Vermerke im Änderungsprotokoll.
 
 ## Gemeinsame Abnahme für sichtbare Effekte
 
-Diese Punkte werden je Effekt im zugehörigen Prüfprotokoll mit Ergebnis und Beleg geführt. Eine Checkbox im Implementierungsumfang bedeutet „gebaut“, nicht automatisch „referenzgetreu abgenommen“.
+Diese Punkte werden je Effekt im zugehörigen Prüfprotokoll mit Ergebnis und Beleg geführt. Eine Checkbox im Implementierungsumfang bedeutet „gebaut“, nicht automatisch „visuell abgenommen“.
 
-- [ ] Referenz und emfau im selben tatsächlichen Viewport und an zugeordneten Scrollpunkten erfassen; Desktop 1440 × 900 und Mobil 390 × 844 anstreben, reale Maße immer notieren.
+- [ ] emfau im selben tatsächlichen Viewport und an festgelegten Scrollpunkten prüfen; Desktop 1440 × 900 und Mobil 390 × 844 anstreben, reale Maße immer notieren. Externe Vergleiche bleiben in den privaten Arbeitsunterlagen.
 - [ ] Anfang, Mitte und Ende des Übergangs sowie mehrere Zwischenstände als Bildfolge oder kurze Aufzeichnung vergleichen.
 - [ ] Langsam und schnell vorwärts scrollen, im Übergang anhalten und die Richtung wechseln; keine Sprünge, Löcher oder abgeschnittenen Effektränder.
 - [ ] Mausbewegung bei festem Scrollstand getrennt von Eigenbewegung prüfen; Einflussbereich, Stärke und Nachlauf dokumentieren. Scrollreaktion separat bei ruhender Maus prüfen.
@@ -33,16 +33,16 @@ Diese Punkte werden je Effekt im zugehörigen Prüfprotokoll mit Ergebnis und Be
 
 ## Zielbild und verbindliche Leitplanken
 
-Die Landingpage übernimmt die überprüfte visuelle Dramaturgie und Interaktionslogik von BlueYard so eng wie technisch und rechtlich sinnvoll, wird aber mit der Marke **emfau**, eigenen Texten, eigenen 3D-Objekten und den Bereichen **Web**, **Games** und **Labs** umgesetzt.
+Die Landingpage bündelt die Marke **emfau**, eigene Texte, eigene 3D-Objekte und die Bereiche **Web**, **Games** und **Labs** in einer zusammenhängenden Scroll-Erfahrung. Die folgende Liste beschreibt die aktuelle technische und gestalterische Grundlage; die weitere Individualisierung erfolgt in gesonderten freigegebenen Arbeitsschritten.
 
-„BlueYard-nah“ bedeutet für dieses Projekt:
+Aktuelle Grundlage:
 
-- gleiche grundsätzliche Szenenfolge, Bildaufteilung, Raumwirkung und Scrollmechanik;
+- fortlaufende Szenenfolge, räumliche Bildaufteilung und kontrollierte Scrollmechanik;
 - ein durchgehender, fixierter WebGL-Raum mit fortgesetzten Objektgruppen; im ersten Farbwechsel bleiben warme und kalte Kugel getrennt;
 - helle, warme und pastellige Flächen statt einer dunklen Standard-Tech-Optik;
 - ruhige Editorial-Kompositionen: große Intro-/Auswahltitel, kleine technische Labels und lesbare Absätze in den geprüften Themenwelten;
-- schwebende weiße Folder-Karten mit kleiner beschrifteter Lasche in der Bereichsauswahl, wie in der live geprüften Referenz;
-- Loader, Menü und Szenen-Navigation in Position und Verhalten nah an der Referenz;
+- schwebende weiße Folder-Karten mit kleiner beschrifteter Lasche in der Bereichsauswahl;
+- Loader, kompaktes Menü und konsistente Szenen-Navigation;
 - eigene Inhalte, Modelle, Texte, Logos und Zielseiten — kein Kopieren fremder Quellcodes oder geschützter Assets.
 
 ### Nicht verhandelbar
@@ -53,12 +53,12 @@ Die Landingpage übernimmt die überprüfte visuelle Dramaturgie und Interaktion
 - [x] Es gibt keinen dunklen Grid-Hintergrund als primäre Gestaltung.
 - [x] Das Menü ist ein kompaktes helles Panel oben rechts, kein Vollbild-Menü.
 - [x] Die Hauptseite nutzt einen fixierten Canvas und eine kontrollierte virtuelle Scroll-/Szenen-Timeline.
-- [ ] Neue sichtbare Gestaltungsmuster werden nur mit Referenzbeleg oder ausdrücklicher Freigabe ergänzt.
-- [ ] Jede Szene wird vor Abnahme in Referenz- und emfau-Ansicht nebeneinander geprüft.
+- [ ] Neue sichtbare Gestaltungsmuster werden nur nach dokumentierter Prüfung oder ausdrücklicher Freigabe ergänzt.
+- [ ] Jede Szene wird vor Abnahme anhand der vereinbarten Keyframes und Bewegungsproben geprüft.
 - [x] Liquid beeinflusst im Übergangsband auch die Bildinhalte; eine wellige Schnittkante allein erfüllt die Abnahme nicht.
 - [ ] Web, Games und Labs erhalten eigenständige Strukturen und Materialien; reine Farbwechsel derselben glatten Kugel bleiben Platzhalter.
 
-Die in K2–K4 beschriebenen Verfahren sind der geplante eigene Nachbau. BlueYards interner Shader- und Simulationsaufbau ist nicht verifiziert; maßgeblich ist das beobachtbare Ergebnis.
+Die in K2–K4 beschriebenen Shader- und Interaktionsverfahren sind eigene Implementierungen. Maßgeblich sind die beobachtbare Wirkung, technische Stabilität und spätere Nutzerabnahme.
 
 ## Kurskorrektur
 
@@ -78,7 +78,7 @@ Die bisherigen Bulks 0–3 enthalten weiterhin brauchbare Marken-, Inhalts- und 
 - [x] dunkle Raster-/Dashboard-Ästhetik aus der sichtbaren Hauptseite entfernen
 - [x] drei gleichwertige Standard-Servicekarten als Hero-Hauptmotiv ablösen
 - [x] Vollbild-Navigation durch kompaktes Panel ablösen
-- [ ] sichtbare Sektionen, die nicht aus der Referenzdramaturgie ableitbar sind
+- [ ] sichtbare Sektionen, die nicht zur vereinbarten emfau-Szenenfolge passen
 
 Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
@@ -142,25 +142,25 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 - [x] Zentrale Inhalte können in Deutsch und Englisch ausgespielt werden.
 
-## Bulk 4 — Referenz-Audit und Keyframe-Matrix
+## Bulk 4 — Szenenprüfung und Keyframe-Matrix
 
-**Status:** Matrix dokumentiert — vollständiger visueller Referenz-Lock noch offen  
+**Status:** Matrix dokumentiert — vollständige visuelle Prüfbasis noch offen
 **Abhängigkeiten:** Bulks 0–3
 
-- [ ] Referenzzustände für Loader, Intro, Manifest, Track Record, Themenwelten, Team und Menü vollständig erfassen (Eröffnungsstrecke sowie Computation/Engineering/Biology am 30.09. live geprüft; vollständige Belegserie offen)
+- [ ] Prüfzustände für Loader, Intro, Manifest, Bereichsauswahl, Themenwelten, Über emfau und Menü vollständig erfassen (Eröffnungsstrecke und erste Themenwelten am 30.09. untersucht; vollständige Belegserie offen)
 - [ ] Desktop-Keyframes auf das Normformat 1440 × 900 bringen
 - [ ] Mobile-Keyframes auf das Normformat 390 × 844 bringen
 - [ ] Typografie, Farben, Abstände, Ebenen und feste UI-Elemente für sämtliche Frames vermessen
 - [x] Eröffnungsstrecke mit Scrollrichtung und Text-/Objektpositionen dokumentieren (K1)
 - [ ] Bewegungs-, Liquid- und Interaktionsverhalten aller weiteren Welten vermessen; unbelegte Morphing-/Timingannahmen ersetzen
-- [x] Referenzszene eindeutig auf die passende emfau-Szene abbilden
+- [x] Szenenzuordnung für Intro, Manifest, Auswahl, Themenwelten und Finale dokumentieren
 - [x] Abweichungsliste für den aktuellen Prototyp erstellen
-- [x] Referenz-Matrix als verbindliche Prüfbasis unter `docs/blueyard-reference-audit.md` ablegen
+- [x] Detaillierte Szenen-Matrix als Prüfbasis dokumentieren; ausführliche Vergleichsunterlagen bleiben lokal außerhalb des Repos
 
 **Abnahme:**
 
-- [ ] Für jeden späteren visuellen Bulk existiert mindestens ein gespeicherter und vermessener Referenz-Keyframe.
-- [x] Die Szene-zu-Szene-Zuordnung BlueYard → emfau ist vollständig und widerspruchsfrei.
+- [ ] Für jeden späteren visuellen Bulk existiert mindestens ein gespeicherter und vermessener Prüf-Keyframe.
+- [x] Die Zuordnung der geplanten emfau-Szenen ist vollständig und widerspruchsfrei.
 - [ ] Es bleiben keine ungeprüften Annahmen über Würfel, Menü oder Seitenstruktur bestehen.
 
 ## Bulk 5 — Fixierter Canvas und virtuelle Szenen-Timeline
@@ -186,7 +186,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 **Nachtrag K2:** Gemeinsamer DOM-/WebGL-Takt und Context-Loss-Fallback inzwischen lokal geprüft; die vollständige schnelle Eingabe-/Gerätematrix bleibt offen.
 
-## Bulk 6 — Loader und Intro 1:1 annähern
+## Bulk 6 — Loader und Intro-Grundbild
 
 **Status:** Loader und Intro-Grundbild implementiert — Partikelinteraktion K4, Material-/Lichtabgleich und Fehlerfall-Abnahme offen  
 **Abhängigkeiten:** Bulk 5
@@ -201,44 +201,44 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [x] orange-pinke Kugelhülle mit korallroten Innen- und hellen Außenpartikeln groß aus dem unteren Rand aufsteigen lassen
 - [x] ersten Übergang von Intro zu Manifest anhand vermessener Aufwärts-/Linksbewegung korrigieren (K1); vollständige visuelle Abnahme bleibt offen
 
-**Prüfstand:** Build, TypeScript, Lint und drei automatisierte Tests erfolgreich. Lokale Sichtprüfungen bei tatsächlich gemessenen 911 × 799, 1441 × 900, 391 × 844 und zusätzlich 714 × 799; gespeicherte finale Frames unter `docs/screenshots/` sind im Prüfprotokoll `docs/bulk-6-verification.md` zugeordnet. Nach dem Laden: null Loader/Würfel, genau ein Canvas. DE/EN, Pfeiltasten, Home und Menü-Szenensprung geprüft. Erste Aufwärts-/Linksbewegung vorhanden; genaue Partikelform, Turbulenz und Übergangstiming noch nicht 1:1 abgenommen. WebGL-Ausfall, Timeout, Reduced-Motion-Lauf und echtes Touchgerät benötigen gesonderte Laufzeitprüfung.
+**Prüfstand:** Build, TypeScript, Lint und drei automatisierte Tests erfolgreich. Lokale Sichtprüfungen bei tatsächlich gemessenen 911 × 799, 1441 × 900, 391 × 844 und zusätzlich 714 × 799; eigene Prüfframes unter `docs/screenshots/`, Zusammenfassung unter `docs/technical-verification.md`. Nach dem Laden: null Loader/Würfel, genau ein Canvas. DE/EN, Pfeiltasten, Home und Menü-Szenensprung geprüft. Erste Aufwärts-/Linksbewegung vorhanden; genaue Partikelform, Turbulenz und Übergangstiming noch nicht visuell abgenommen. WebGL-Ausfall, Timeout, Reduced-Motion-Lauf und echtes Touchgerät benötigen gesonderte Laufzeitprüfung.
 
 **Abnahme:**
 
 - [x] Der Würfel ist nach Ende des Loaders nicht mehr Teil der Hauptkomposition.
-- [ ] Der erste sichtbare Frame vermittelt dieselbe helle, räumliche Gewichtung wie die Referenz.
+- [ ] Der erste sichtbare Frame besitzt die vereinbarte helle, räumliche Gewichtung.
 - [ ] Headline und Kugel stimmen in Größe, Achse und vertikaler Lage mit der Keyframe-Matrix überein.
 
 **Nachtrag K2:** WebGL-Context-Loss und reduzierter Darstellungsmodus über Prüffunktion getestet. Initialer WebGL-Startfehler, Loader-Timeout, Betriebssystem-Medienabfrage und echtes Touchgerät bleiben gesonderte Prüfungen.
 
 ## Bulk 7 — Manifest und Bereichsauswahl
 
-**Status:** Implementiert und lokal geprüft — framegenaue Referenz-/Nutzerabnahme offen
+**Status:** Implementiert und lokal geprüft — framegenaue visuelle Nutzerabnahme offen
 **Abhängigkeiten:** Bulk 6
 
 - [x] Hauptobjekt beim Scrollen nach links/oben verschieben und anschneiden; warme Partikelkugel bis zur Auswahl erhalten
-- [x] Manifest-Text rechts mit referenznaher Zeilenlänge und Größenhierarchie einblenden
+- [x] Manifest-Text rechts mit abgestimmter Zeilenlänge und Größenhierarchie einblenden
 - [x] kleinen monospaced Textlink von Haltung zur Auswahl ergänzen
-- [x] BlueYard-Track-Record-Komposition auf emfau-Bereichsauswahl übertragen: zentrierter Titel, gestaffelte Karten vor derselben Kugel
+- [x] emfau-Bereichsauswahl anlegen: zentrierter Titel, gestaffelte Karten vor derselben Kugel
 - [x] weiße, rechteckige Folder-Karten mit beschrifteter Lasche für Web, Games und Labs erstellen (Live-Prüfung korrigiert frühere Transparenzannahme)
 - [x] scrollgekoppelte Kartenbewegung von unten und Tiefenstaffelung über Maßstab implementieren; keine erfundene Dauerbewegung oder Unschärfe
 - [x] jede Karte zur passenden Welt führen; deren bestehende CTA führt zur DE/EN-Zielroute
-- [ ] Bewegungsstrecke und Staffelung im normierten Referenzvergleich exakt abstimmen
+- [ ] Bewegungsstrecke und Staffelung im normierten Bewegungsvergleich exakt abstimmen
 
-**Prüfstand:** Build, TypeScript, Lint und vier Tests erfolgreich. Alle drei Karten, DE/EN, Enter-Aktivierung, PageUp-Rücksprünge und unveränderte Canvas-ID geprüft. Desktop 1441 × 900 und Mobil 391 × 844 ohne Kartenüberlappung; Fokusversatz korrigiert. Referenz- und lokale Prüfframes gespeichert. Details und verbleibende Abweichungen unter `docs/bulk-7-verification.md`. Keine 1:1-Abnahme oder Veröffentlichung.
+**Prüfstand:** Build, TypeScript, Lint und vier Tests erfolgreich. Alle drei Karten, DE/EN, Enter-Aktivierung, PageUp-Rücksprünge und unveränderte Canvas-ID geprüft. Desktop 1441 × 900 und Mobil 391 × 844 ohne Kartenüberlappung; Fokusversatz korrigiert. Eigene Prüfframes gespeichert, Zusammenfassung unter `docs/technical-verification.md`. Keine finale visuelle Abnahme; spätere Testveröffentlichung ersetzt sie nicht.
 
 **Abnahme:**
 
 - [x] Objekt, Manifest und Karten verwenden dieselbe fortgesetzte Szene ohne Canvas-Neustart.
 - [x] Drei Angebote mit kurzen Zielgruppen-/Inhaltsbeschreibungen sind sichtbar und anwählbar.
-- [ ] Referenznähe von Komposition und Bewegung durch normierten Vergleich und Nutzerabnahme bestätigen.
+- [ ] Komposition und Bewegung durch normierte Prüfung und Nutzerabnahme bestätigen.
 
 ## Korrekturblock K1 — Bewegung vor weiteren Materialwelten
 
 **Status:** Scroll-/Layoutgerüst implementiert und lokal geprüft — keine Abnahme der Liquid-/Materialqualität  
 **Abhängigkeiten:** Bulks 4–7; Grundlage für K2–K4 und Bulk 8
 
-- [x] Referenz Intro → Manifest → Highlights → erste Themenwelt in kleinen Scrollschritten live erfassen
+- [x] Eröffnungsstrecke Intro → Manifest → Auswahl → erste Themenwelt in kleinen Scrollschritten untersuchen
 - [x] Scrollstrecke in Viewporthöhen und beobachtete Text-/Objektpositionen dokumentierbar machen
 - [x] Automatisches Zurückschnappen nach Wheel/Touch entfernen; kleine Scrollschritte erhalten
 - [x] Gleichmäßige Szenenblenden durch getrennte Text-, Karten- und Objektbewegung ersetzen
@@ -253,17 +253,17 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 **Abnahme:** K1 belegt ausgewählte Positionen und die grundlegende Scrollfolge. Der Konturshader und die Grenzmaske erfüllen noch keine Effektabnahme. Der vollständige Vergleich erfolgt bei G1 nach K2–K4 und Bulk 8; die offene Nutzerabnahme von K1 verhindert nicht die geplanten technischen Korrekturen.
 
-**Prüfstand:** Referenz und lokale Eröffnungsstrecke bei tatsächlich gleichen 1281 × 721 verglichen. Intro-Headline, Manifest und Einstieg der ersten Welt liegen an gemessenen Scrollpunkten innerhalb circa 3 px ihrer jeweiligen vertikalen Referenzanker. Kleine Wheel-Schritte bleiben erhalten; Rückwärtsweg und persistenter Renderer geprüft. Mobil 391 × 844: Intro, drei Karten, Web-Einstieg und DE/EN sichtbar; kein vollständiger mobiler Referenz-Lock und kein echtes Touchgerät geprüft. TypeScript, Lint, Build und sieben Tests erfolgreich. Details: `docs/correction-k1-verification.md`.
+**Prüfstand:** Lokale Eröffnungsstrecke bei 1281 × 721 geprüft; detaillierte Positionsvergleiche sind privat archiviert. Kleine Wheel-Schritte bleiben erhalten; Rückwärtsweg und persistenter Renderer geprüft. Mobil 391 × 844: Intro, drei Karten, Web-Einstieg und DE/EN sichtbar; keine vollständige mobile visuelle Abnahme und kein echtes Touchgerät geprüft. TypeScript, Lint, Build und sieben Tests erfolgreich. Zusammenfassung: `docs/technical-verification.md`.
 
 **Offen:** Partikel-Turbulenz und lokale Eingabereaktion (K4), bildverzerrender Flüssigkeitsübergang (K2/K3), Faser-/Metall-/Zellstrukturen und weitere Weltübergänge (Bulks 8–11). Der aktuelle Stand ist eine Grundlage für diese Arbeiten.
 
 ## Korrekturblock K2 — Gemeinsame Steuerung und Renderaufbau
 
-**Status:** Implementiert und lokal geprüft — keine Liquid-/Partikel- oder finale Referenzabnahme  
-**Abhängigkeiten:** K1; zugehörige Referenzbelege aus Bulk 4 fortschreiben
+**Status:** Implementiert und lokal geprüft — keine Liquid-/Partikel- oder finale visuelle Abnahme
+**Abhängigkeiten:** K1; zugehörige Prüfbelege aus Bulk 4 fortschreiben
 
 - [x] Scrollposition, Scrollgeschwindigkeit, Mausposition, Mausgeschwindigkeit, Zeit und Frame-Dauer zentral bereitstellen; Koordinaten und Einheiten eindeutig festlegen.
-- [x] Scrollgebundene Positionen von zeitabhängiger Eigenbewegung und gedämpften Eingabeimpulsen trennen; technische Nachlaufbasis bereitstellen. Effektbezogene Referenzabstimmung bleibt K3/K4.
+- [x] Scrollgebundene Positionen von zeitabhängiger Eigenbewegung und gedämpften Eingabeimpulsen trennen; technische Nachlaufbasis bereitstellen. Effektbezogene visuelle Abstimmung bleibt K3/K4.
 - [x] Gemeinsamen Update-Ablauf für DOM, Kamera, Objekte und Effekte definieren; keine unabhängigen, widersprüchlichen Fortschrittsberechnungen.
 - [x] Jeweils beteiligte Welt A und Welt B in getrennte Render Targets rendern; einen persistenten Renderer/Canvas beibehalten.
 - [x] Warme und kalte Hauptfarbverläufe in den Renderaufbau aufnehmen, damit sie zusammen mit den Objekten verzerrbar sind; bisherigen CSS-Fallback erhalten.
@@ -279,32 +279,32 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [x] Eingabegeschwindigkeit klingt bei Stillstand gedämpft ab; Fortschritt bleibt stehen und ist rückwärts steuerbar.
 - [x] Genau ein persistenter Canvas, keine Shaderfehler oder leeren Bilder in den geprüften Zuständen; Resize, Ressourcenfreigabe und echter Context-Loss-Fallback geprüft.
 
-**Prüfstand:** TypeScript, Lint, Build und 15 Tests bestanden. Gleiche DOM-/Canvas-Frame-ID; persistenter Renderer durch Scroll-/Rückweg und Desktop→Mobile-Resize. Tatsächliche Viewports 1282 × 722, 391 × 844 und 1441 × 900; DE/EN sowie reduzierter Modus über Prüffunktion getestet. Einzelne Frameintervalle bis 61,2 ms; keine garantierte Bildrate und kein echter Mobilgeräte-/GPU-Benchmark. Lokale Diagnoseansicht über `?renderDebug=1`. Details, Messwerte und Bildbelege: `docs/correction-k2-verification.md`. Sichtbarer Übergang bleibt bis K3 eine unverzerrte wellige Maske; Weltmodelle bleiben Platzhalter.
+**Prüfstand:** TypeScript, Lint, Build und 15 Tests bestanden. Gleiche DOM-/Canvas-Frame-ID; persistenter Renderer durch Scroll-/Rückweg und Desktop→Mobile-Resize. Tatsächliche Viewports 1282 × 722, 391 × 844 und 1441 × 900; DE/EN sowie reduzierter Modus über Prüffunktion getestet. Einzelne Frameintervalle bis 61,2 ms; keine garantierte Bildrate und kein echter Mobilgeräte-/GPU-Benchmark. Lokale Diagnoseansicht über `?renderDebug=1`. Zusammenfassung und eigene Bildbelege: `docs/technical-verification.md`. Sichtbarer Übergang bleibt bis K3 eine unverzerrte wellige Maske; Weltmodelle bleiben Platzhalter.
 
 ## Korrekturblock K3 — Bildverzerrender Liquid-Übergang
 
-**Status:** Implementiert und lokal geprüft — genaue Referenz-/Nutzerabnahme offen  
+**Status:** Implementiert und lokal geprüft — genaue visuelle Nutzerabnahme offen
 **Abhängigkeiten:** K2; erste Zielstrecke Orange → Web
 
-- [x] Referenzstrecke in frühen/mittleren/späten Zuständen und bei Stillstand erfassen; breite Verzerrungszone, Grenze und Farbsäume qualitativ dokumentieren.
+- [x] Übergang in frühen/mittleren/späten Zuständen und bei Stillstand untersuchen; breite Verzerrungszone, Grenze und Farbsäume qualitativ dokumentieren.
 - [x] Die bisherige Zwei-Sinus-Grenze durch ein bewegtes, mehrskaliges Verzerrungsfeld ersetzen.
 - [x] Bildkoordinaten beider Weltbilder im Übergangsband verschieben: Konturen, Partikel und Hintergründe werden gemeinsam gedehnt und gebrochen.
 - [x] Sichtbarkeitsmaske und Bildverzerrung aus demselben Feld ableiten; sichere Randkoordinaten gegen leere Streifen.
 - [x] Lage des Übergangs an den Scrollstand binden; Zeit sowie begrenzte gedämpfte Eingabeimpulse bewegen das Band intern.
-- [ ] Stärke, Einflussradius und Nachlauf von Maus/Scroll anhand isolierter Referenzproben quantitativ abstimmen; vorhandene Werte sind eigene Startparameter.
+- [ ] Stärke, Einflussradius und Nachlauf von Maus/Scroll anhand isolierter Eingabeproben quantitativ abstimmen; vorhandene Werte sind eigene Startparameter.
 - [x] Analytische helle Reflexe und dezente Farbsäume im Band implementieren; gemeinsame Farbausgabe aus K2 verwenden.
-- [ ] Reflexe, Glühen und Strömungsform mit finalem Faserobjekt exakt an die Referenz angleichen (Bulk 8/G1).
+- [ ] Reflexe, Glühen und Strömungsform mit finalem Faserobjekt visuell abstimmen (Bulk 8/G1).
 - [x] Text und feste UI scharf halten; Beginn und Ende der Verzerrung weich auslaufen lassen.
 - [x] Bestehende Auflösungsbegrenzung nutzen, mobile Feldkomplexität/Stärke reduzieren und Verzerrung bei Reduced Motion deaktivieren; keine vollständige Flüssigkeitssimulation.
 
 **Betroffene Stellen:** `lib/liquid-transition.ts`, `lib/world-composite-shaders.ts`, `lib/world-renderer.ts`, `components/experience-canvas.tsx`, lokale Renderprüfung in `components/emfau-landing.tsx`. Alte Grenzmaske aus `lib/opening-shaders.ts` entfernt.
 
-**Prüfstand:** TypeScript, Lint, Build und 20 Tests bestanden. Desktop 1281 × 721, Mobilprofil 391 × 844; Bildverzerrung gegen neutrale Komposition, Hin-/Rückweg, kleine/große Wheel-Eingaben, Stillstand, Zeigerimpuls und Reduced Motion lokal geprüft. Frischer Seitenstart ohne Konsolenfehler. Keine echte Mobilgeräte-/GPU-Messung. Belege und verbleibende Abweichungen: `docs/correction-k3-verification.md`.
+**Prüfstand:** TypeScript, Lint, Build und 20 Tests bestanden. Desktop 1281 × 721, Mobilprofil 391 × 844; Bildverzerrung gegen neutrale Komposition, Hin-/Rückweg, kleine/große Wheel-Eingaben, Stillstand, Zeigerimpuls und Reduced Motion lokal geprüft. Frischer Seitenstart ohne Konsolenfehler. Keine echte Mobilgeräte-/GPU-Messung. Zusammenfassung und eigene Bildbelege: `docs/technical-verification.md`.
 
 **Abnahme:**
 
-- [ ] Auch ein mittlerer Übergangsframe zeigt die referenznahe Verzerrung der Bildinhalte; eine dekorierte Schnittkante genügt nicht.
-- [x] Kleine/große Scrollschritte, Stillstand und Richtungswechsel lokal geprüft; an derselben Scrollposition bleibt die makroskopische Weltaufteilung gleich. Vollständige Referenzbewegungsabnahme bleibt G1.
+- [ ] Auch ein mittlerer Übergangsframe zeigt die vereinbarte Verzerrung der Bildinhalte; eine dekorierte Schnittkante genügt nicht.
+- [x] Kleine/große Scrollschritte, Stillstand und Richtungswechsel lokal geprüft; an derselben Scrollposition bleibt die makroskopische Weltaufteilung gleich. Vollständige Bewegungsabnahme bleibt G1.
 - [ ] Keine Löcher, unerwünschte Farbsprünge oder unlesbare Texte. Vergleich zunächst mit vorhandenen Modellen, erneute Prüfung mit finaler Web-Kugel in Bulk 8.
 
 ## Korrekturblock K4 — Interaktive Partikel und Intro-Material
@@ -312,10 +312,10 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 **Status:** Offen  
 **Abhängigkeiten:** K2 und K3
 
-- [ ] Maus- und Scrollreaktion der Referenz bei jeweils festgehaltenem anderen Eingang separat prüfen; Einflussbereich, Richtung, Stärke und Nachlauf dokumentieren.
+- [ ] Maus- und Scrollreaktion bei jeweils festgehaltenem anderen Eingang separat prüfen; Einflussbereich, Richtung, Stärke und Nachlauf dokumentieren.
 - [ ] Mausposition in den Raum der transformierten Kugel umrechnen, sodass die lokale Reaktion auch nach Verschieben, Skalieren und Rotieren am richtigen Ort liegt.
 - [ ] Begrenztes Einflussfeld mit gerichteten Impulsen, Strömung/Wirbeln, Dämpfung und Rückkehr zur Grundverteilung aufbauen; globale Kugelrotation ist kein Ersatz.
-- [ ] Zunächst ein gemeinsames Strömungsfeld auf die Partikel anwenden und visuell vergleichen; bei erforderlichen eigenständigen Bahnen Position/Geschwindigkeit auf der GPU fortschreiben. Die Entscheidung mit Referenz- und Laufzeitbelegen festhalten.
+- [ ] Zunächst ein gemeinsames Strömungsfeld auf die Partikel anwenden und visuell vergleichen; bei erforderlichen eigenständigen Bahnen Position/Geschwindigkeit auf der GPU fortschreiben. Die Entscheidung mit Bild- und Laufzeitbelegen festhalten.
 - [ ] Innenpartikel und äußere Funken mit eigener Verteilung, Dichte, Geschwindigkeit, Größe und Helligkeit abstimmen; zusammenhängende Bewegung statt gleichmäßigen Zitterns.
 - [ ] Scrollimpulse mit begrenzter Stärke einkoppeln und weich ausklingen lassen; keine zusätzliche Verformung der runden Kugelgrundkontur.
 - [ ] Tiefenwirkung, Durchscheinen, Hüllenrand und Licht abstimmen; Partikel nicht pauschal ohne Tiefenbezug über alle Ebenen zeichnen.
@@ -327,14 +327,14 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 - [ ] Lokale Reaktion folgt dem Zeiger im korrekten Kugelbereich, besitzt sichtbaren Nachlauf und klingt ohne Sprünge ab.
 - [ ] Eigenbewegung und Scrollreaktion separat vergleichbar; keine fortgesetzte Szenenbewegung nach Ende der Eingabe.
-- [ ] Dichte, Tiefe, Licht und Grundkontur stimmen im vereinbarten Referenzvergleich; mobile/reduzierte Varianten bleiben stabil.
+- [ ] Dichte, Tiefe, Licht und Grundkontur stimmen im vereinbarten visuellen Vergleich; mobile/reduzierte Varianten bleiben stabil.
 
-## Bulk 8 — Web-Welt nach Referenzszene „Computation"
+## Bulk 8 — Web-Welt mit räumlichen Faserbündeln
 
 **Status:** Offen  
 **Abhängigkeiten:** Bulk 7, K1–K4
 
-- [ ] Blau/Violett/Silber der Referenz abstimmen; kleine technische Beschriftung und Absatz links, Kugel rechts.
+- [ ] Blau/Violett/Silber abstimmen; kleine technische Beschriftung und Absatz links, Kugel rechts.
 - [ ] Geschlossene Kugel mit aufgemaltem Linienmuster durch räumliche gebogene Faserbündel mit Zwischenräumen, Überlagerungen und unterschiedlicher Tiefe ersetzen; Bänder/Röhren prozedural oder als eigenes Modell aufbauen.
 - [ ] Material, Reflexionsumgebung und wandernde Glanzlichter an den Fasern abstimmen; Beleuchtung der eigenen Shader ausdrücklich implementieren.
 - [ ] Eigenbewegung, Scrollbewegung und beobachtete Eingabereaktion getrennt abstimmen; Detail-Aliasing und Transparenz prüfen.
@@ -346,12 +346,12 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 **Abnahme:**
 
-- [ ] Komposition, Objektmaßstab, Kartebenen und UI-Anker entsprechen dem zugeordneten Referenz-Keyframe.
-- [ ] Web-Inhalte bleiben trotz visueller Nähe zur Referenz sofort verständlich.
+- [ ] Komposition, Objektmaßstab, Kartebenen und UI-Anker entsprechen dem vereinbarten Prüf-Keyframe.
+- [ ] Web-Inhalte bleiben innerhalb der räumlichen Szene sofort verständlich.
 - [ ] Fasern zeigen beim Bewegen räumliche Tiefe und Durchblicke; keine bloß eingefärbte glatte Kugel.
 - [ ] Meilenstein G1: vollständigen Weg Intro → Manifest → Auswahl → Liquid → Web anhand der gemeinsamen Bewegungsabnahme vergleichen; Abweichungen korrigieren und visuelle Nutzerabnahme separat dokumentieren.
 
-## Bulk 9 — Games-Welt nach Referenzszene „Engineering"
+## Bulk 9 — Games-Welt mit segmentiertem Modell
 
 **Status:** Offen  
 **Abhängigkeiten:** Bulk 8
@@ -359,30 +359,30 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [ ] hellblaue, technisch-metallische Szenenstimmung aufbauen
 - [ ] Kugel aus einzelnen Platten/Segmenten mit echten Fugen und unterschiedlichen Oberflächenwinkeln entwickeln; größere Strukturen geometrisch, feinere Details gegebenenfalls über Oberflächentexturen abbilden.
 - [ ] Reflexionsumgebung, Materialrauheit, Kantenlicht und beobachtete Bewegung je Segment abstimmen.
-- [ ] Referenzkomposition verwenden: Kugel links, kleines technisches Label und Absatz rechts; die riesige Games-Überschrift ablösen.
-- [ ] Games-Projekte oder Kompetenzen in referenznahen Floating Cards zeigen
-- [ ] Web → Games als eigene Referenzstrecke vermessen und mit dem Liquid-/Renderaufbau aus K2/K3 umsetzen; Position, Kamera, Licht und Farbwechsel gemeinsam prüfen.
+- [ ] Komposition abstimmen: Kugel links, kleines technisches Label und Absatz rechts; die riesige Games-Überschrift ablösen.
+- [ ] Games-Projekte oder Kompetenzen in schwebenden Karten zeigen
+- [ ] Web → Games als eigene Übergangsstrecke vermessen und mit dem Liquid-/Renderaufbau aus K2/K3 umsetzen; Position, Kamera, Licht und Farbwechsel gemeinsam prüfen.
 - [ ] Szenennummer und Statusleiste konsistent fortführen
 - [ ] Verlinkung zur ausführlicheren Games-Seite herstellen
 
 **Abnahme:**
 
-- [ ] Die Welt ist klar als Games erkennbar, ohne die BlueYard-artige Szenenlogik zu verlassen.
+- [ ] Die Welt ist klar als Games erkennbar und bleibt Teil der fortlaufenden emfau-Szenenlogik.
 - [ ] Der Materialwechsel erfolgt ohne sichtbaren Canvas-Neustart oder Layoutsprung.
 - [ ] Segmente und Fugen bleiben unter Bewegung räumlich nachvollziehbar; gemeinsamer Bewegungs- und Laufzeitvergleich bestanden.
 
-## Bulk 10 — Labs-Welt nach Referenzszene „Biology"
+## Bulk 10 — Labs-Welt mit organischer Zellstruktur
 
 **Status:** Offen  
 **Abhängigkeiten:** Bulk 9
 
-- [ ] Türkis/Cyan als dominante Farbwelt mit violetten Akzenten anhand der aktuellen Biology-Referenz abstimmen; frühere rosa Grundvorgabe ersetzen.
+- [ ] Türkis/Cyan als dominante Farbwelt mit violetten Akzenten abstimmen; frühere rosa Grundvorgabe ersetzen.
 - [ ] Durchscheinende Hülle mit Zell-/Wabenstruktur und separaten leuchtenden Fasern entwickeln; Materialschichten und Tiefe gezielt aufbauen.
-- [ ] Referenzkomposition verwenden: organische Kugel rechts, kleines technisches Label und Absatz links; die riesige Labs-Überschrift ablösen.
+- [ ] Komposition abstimmen: organische Kugel rechts, kleines technisches Label und Absatz links; die riesige Labs-Überschrift ablösen.
 - [ ] Eigenbewegung, beobachtete lokale Reaktion, Reflexionen und Lichtstreuung zusammen abstimmen.
 - [ ] Frameworks, Tools und Experimente in schwebenden Karten darstellen
-- [ ] Transparente Ebenen und Verdeckung performant umsetzen; zusätzliche Tiefenunschärfe nur bei belegtem Referenzeffekt einsetzen.
-- [ ] Games → Labs mit eigener Referenzmessung über die Liquid-Verzerrungszone führen; mechanische und organische Welt getrennt rendern und zeitlich aufeinander abstimmen.
+- [ ] Transparente Ebenen und Verdeckung performant umsetzen; zusätzliche Tiefenunschärfe nur nach dokumentierter visueller Prüfung einsetzen.
+- [ ] Games → Labs mit eigener Übergangsmessung über die Liquid-Verzerrungszone führen; mechanische und organische Welt getrennt rendern und zeitlich aufeinander abstimmen.
 - [ ] Szenennummer und Statusleiste konsistent fortführen
 - [ ] Verlinkung zur ausführlicheren Labs-Seite herstellen
 
@@ -397,8 +397,8 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 **Status:** Offen  
 **Abhängigkeiten:** Bulk 10
 
-- [ ] Finalszene an der BlueYard-Teamkomposition ausrichten
-- [ ] Übergang aus Labs separat vermessen; die in emfau ausgelassene Crypto-Welt bei der Zuordnung berücksichtigen, keine unbestätigte Standard-Morphing-Sequenz voraussetzen.
+- [ ] Eigenständige Über-emfau- und Kontaktkomposition für die Finalszene abstimmen
+- [ ] Übergang aus Labs separat vermessen; keine zusätzliche Themenwelt oder unbestätigte Standard-Morphing-Sequenz voraussetzen.
 - [ ] spiegelnde beziehungsweise gekachelte Kugel links platzieren
 - [ ] große freie Typografie rechts für Name, Haltung und Kontakt einsetzen
 - [ ] klare Kontakt-CTA und Rückkehr zum Seitenanfang integrieren
@@ -408,7 +408,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 **Abnahme:**
 
-- [ ] Die Finalszene besitzt dieselbe starke Links-rechts-Spannung wie die Referenz.
+- [ ] Die Finalszene besitzt die vereinbarte starke Links-rechts-Spannung.
 - [ ] Kontakt und Navigation sind verständlich, ohne ein zusätzliches Standard-Footerlayout zu erzeugen.
 
 ## Bulk 12 — Integration, DE/EN und Zielseiten
@@ -457,7 +457,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 **Status:** Offen  
 **Abhängigkeiten:** Bulk 13
 
-- [ ] alle definierten Keyframes Referenz und emfau nebeneinander erfassen
+- [ ] alle definierten emfau-Keyframes erfassen und anhand der vereinbarten Prüfbasis vergleichen
 - [ ] Gemeinsame Bewegungsabnahme für jeden Übergang abschließen: langsam/schnell, Stillstand, Rückwärtsweg, lokale Mausreaktion und Touch; Bildfolgen oder Aufzeichnungen zuordnen.
 - [ ] Abweichungen bei Komposition, Farbe, Typografie, Bewegung und Timing protokollieren
 - [ ] kritische Abweichungen vor der Freigabe korrigieren
@@ -479,7 +479,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 | Meilenstein | Erreicht nach | Erwartbares Ergebnis |
 |---|---:|---|
-| Referenz-Lock | Bulk 4, fortgeschrieben je Effekt | Gespeicherte Szene-/Bewegungsbelege; vollständig noch offen |
+| Visuelle Prüfbasis | Bulk 4, fortgeschrieben je Effekt | Gespeicherte Szene-/Bewegungsbelege; vollständig noch offen |
 | Scroll-/Layoutgerüst | Bulks 5–7 und K1 | Vorhanden und lokal geprüft; Effektqualität weiterhin offen |
 | Gemeinsame Renderbasis | K2 | Vorhanden und lokal geprüft; getrennte Weltbilder, Eingaben und zentrale Ausgabe |
 | Liquid-/Interaktionsbasis | K2–K4 | Bildverzerrender Übergang und lokale Partikelreaktion geprüft |
@@ -501,13 +501,15 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 Historische Einträge beschreiben den damaligen Stand; für Reihenfolge und Abnahme gelten der aktuelle Arbeitsstand und die korrigierten Abschnitte oben.
 
-- **28.09.2026:** Roadmap nach vollständiger Sichtprüfung der aktuellen BlueYard-Seite neu strukturiert. Würfel auf Loader beschränkt, feste WebGL-Szenenfolge, organische Hauptkugel, kompaktes Menü und framebasierte Abnahme als verbindliche Leitplanken ergänzt. Frühere abweichende visuelle Bulks verworfen.
-- **28.09.2026:** Bulk 4 abgeschlossen. Desktop-/Mobile-Keyframe-Matrix, Motion-Regeln, Szene-zu-Szene-Zuordnung und priorisiertes Abweichungsregister unter `docs/blueyard-reference-audit.md` festgeschrieben. Bulk 5 ist der nächste aktive Arbeitsschritt.
+- **28.09.2026:** Roadmap nach visueller Untersuchung neu strukturiert. Würfel auf Loader beschränkt, feste WebGL-Szenenfolge, organische Hauptkugel, kompaktes Menü und framebasierte Abnahme als verbindliche Leitplanken ergänzt. Frühere abweichende visuelle Bulks verworfen.
+- **28.09.2026:** Bulk-4-Matrix, Motion-Regeln, Szenenzuordnung und priorisiertes Abweichungsregister dokumentiert; der damalige Abschlussstatus wurde später auf die noch offene vollständige Prüfbasis korrigiert. Die ausführlichen Vergleichsunterlagen sind inzwischen privat archiviert.
 - **30.09.2026:** Bulk 5 nach Unterbrechung fortgesetzt. Arbeitskopie mit dem Projektordner abgeglichen; gemeinsame DOM-/WebGL-Timeline, persistenter Renderer, normalisierte Eingaben, kontrastreiches Logo und Navigation korrigiert. Visuelle Abnahme bleibt offen; keine Veröffentlichung.
-- **30.09.2026:** Bulk 6 implementiert: eigenständiger Loader, echte Lade-Checkpoints, Timeout-/2D-Pfad, lokal eingebundene Instrument Sans, helle Gradient-Komposition und originale Shader-/Partikelkugel. Prüfframes gespeichert. Zu früh gesetzte Bulk-4-Abnahmen korrigiert: Live-Messungen von Loader/Intro sind dokumentiert, der vollständige Normformat-Referenz-Lock bleibt offen. Bulk 7 folgt mit Manifest-Feinabgleich und schwebender Bereichsauswahl.
-- **30.09.2026:** Bulk 7 nach Unterbrechung fortgesetzt und implementiert. Warme Kugel durch Manifest/Auswahl erhalten, rechte Textkomposition und technischer Link ergänzt, weiße Folder-Karten mit scrollgekoppelter Staffelung und DE/EN-Zielen gebaut. Live-Referenz korrigiert die frühere Annahme milchiger/unscharfer Karten. Fokusversatz behoben, Desktop/Mobil und Kartenwege geprüft, Screenshots und Prüfprotokoll gespeichert. Exakter 1:1-/Timing-Abgleich bleibt offen; nächster Implementierungsbulk ist Bulk 8.
-- **30.09.2026:** Auf Nutzerhinweis und nach erneuter Live-Prüfung der Referenz die unbelegte Wellen-/Dellenverformung der ersten Kugel entfernt. Hüllen-Shader verwendet unveränderte Kugelkoordinaten; Scroll-/Zeit-Uniforms für Verformung entfernt und Regressionstest ergänzt. Referenzmatrix korrigiert. Weitere Partikel-, Material- und Timing-Abnahmen bleiben offen.
-- **30.09.2026:** K1 implementiert und lokal geprüft: Scrollstrecke in Viewporthöhen, getrennte Bewegungswege, separate kalte Kugel und vorläufige Grenzmaske. Prüfprotokoll: `docs/correction-k1-verification.md`. Dies ist keine Abnahme des Liquid-Effekts oder der Materialien.
-- **30.09.2026:** Roadmap auf Basis des erneuten Live-/Codevergleichs korrigiert: K2 Renderaufbau, K3 bildverzerrender Liquid-Übergang und K4 lokale Partikelinteraktion vor Bulk 8 ergänzt. Bulks 8–10 erhalten eigenständige Faser-, Platten- und Zellmodelle samt Licht; Biology auf Türkis/Cyan berichtigt. Bewegungsprüfung und Meilenstein G1 ersetzen die Erwartung, nach Bulk 6 bereits die vollständige Referenzwirkung zu erhalten. Referenzmatrix synchronisiert. Nur Planung/Dokumentation geändert; neue Effekte noch nicht implementiert.
-- **30.09.2026:** K2 nach Unterbrechung fertiggestellt: gemeinsamer Frame-Takt und Eingabevertrag, zwei Welt-Render-Targets einschließlich Hauptfarbverläufen, zentrale neutrale Maske, lineare Zwischenbilder/sRGB-Ausgabe, lokale Prüffunktionen und Ressourcenverwaltung. TypeScript/Lint/Build sowie 15 Tests grün; Rückweg, Resize, Farbvergleich, DE/EN, reduzierter Modus und Context-Loss-Fallback lokal geprüft. Protokoll `docs/correction-k2-verification.md`. Nächster Block K3; weder Liquid-Verzerrung noch lokale Partikelkräfte umgesetzt, keine Veröffentlichung.
-- **30.09.2026:** K3 implementiert: gemeinsame mehrskalige Bildverzerrung beider Welten, scrollgebundene Lage, zeitabhängige Strömung, begrenzte Eingabeimpulse, Farbsäume/Reflexe und mobile/reduzierte Varianten. 20 Tests, TypeScript, Lint und Build grün; Browserbelege im K3-Protokoll. Genaue Referenzabstimmung bleibt offen. Nächster Block K4. Anschließend auf Nutzerwunsch GitHub-Testveröffentlichung vorbereiten; keine finale Designabnahme.
+- **30.09.2026:** Bulk 6 implementiert: eigenständiger Loader, echte Lade-Checkpoints, Timeout-/2D-Pfad, lokal eingebundene Instrument Sans, helle Gradient-Komposition und eigene Shader-/Partikelkugel. Prüfframes gespeichert. Zu früh gesetzte Bulk-4-Abnahmen korrigiert; vollständige Normformat-Prüfbasis bleibt offen.
+- **30.09.2026:** Bulk 7 implementiert: warme Kugel durch Manifest/Auswahl erhalten, rechte Textkomposition und technischer Link ergänzt, weiße Folder-Karten mit scrollgekoppelter Staffelung und DE/EN-Zielen gebaut. Fokusversatz behoben, Desktop/Mobil und Kartenwege geprüft. Exakter visueller Timing-Abgleich bleibt offen.
+- **30.09.2026:** Auf Nutzerhinweis die unbelegte Wellen-/Dellenverformung der ersten Kugel entfernt. Hüllen-Shader verwendet unveränderte Kugelkoordinaten; Scroll-/Zeit-Uniforms für Verformung entfernt und Regressionstest ergänzt. Weitere Partikel-, Material- und Timing-Abnahmen bleiben offen.
+- **30.09.2026:** K1 implementiert und lokal geprüft: Scrollstrecke in Viewporthöhen, getrennte Bewegungswege, separate kalte Kugel und vorläufige Grenzmaske. Dies ist keine Abnahme des Liquid-Effekts oder der Materialien.
+- **30.09.2026:** K2 Renderaufbau, K3 bildverzerrender Liquid-Übergang und K4 lokale Partikelinteraktion vor Bulk 8 eingeordnet. Bulks 8–10 erhalten eigenständige Faser-, Platten- und Zellmodelle samt Licht; Labs-Farbwelt auf Türkis/Cyan berichtigt. Bewegungsprüfung und Meilenstein G1 bleiben maßgeblich.
+- **30.09.2026:** K2 fertiggestellt: gemeinsamer Frame-Takt und Eingabevertrag, zwei Welt-Render-Targets, zentrale neutrale Maske, lineare Zwischenbilder/sRGB-Ausgabe, lokale Prüffunktionen und Ressourcenverwaltung. 15 Tests sowie TypeScript/Lint/Build bestanden; Rückweg, Resize, DE/EN, reduzierter Modus und Context-Loss-Fallback lokal geprüft.
+- **30.09.2026:** K3 implementiert: gemeinsame mehrskalige Bildverzerrung beider Welten, scrollgebundene Lage, zeitabhängige Strömung, begrenzte Eingabeimpulse, Farbsäume/Reflexe und mobile/reduzierte Varianten. 20 Tests sowie TypeScript/Lint/Build bestanden; genaue visuelle Abstimmung bleibt offen. Nächster Block K4.
+- **30.09.2026:** GitHub-Pages-Testvorschau veröffentlicht und deutsche Texte aktualisiert; nach dem Textupdate 21 Tests sowie TypeScript/Lint bestanden. Die Testveröffentlichung ist keine finale Designfreigabe.
+- **30.09.2026:** Repository-Dokumentation auf emfau ausgerichtet, externe Referenzbilder und ausführliche Vergleichsunterlagen lokal außerhalb des Repos gesichert. Bilddateien werden zusätzlich aus der veröffentlichten Git-Historie bereinigt. Arbeitspakete und bestehende Checkboxen bleiben erhalten. Website, Repo-Name, Live-Adresse und Deployment-Konfiguration bleiben unverändert; technische Zusammenfassung unter `docs/technical-verification.md`.

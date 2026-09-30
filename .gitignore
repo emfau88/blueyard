@@ -47,5 +47,11 @@ next-env.d.ts
 /.codex/
 /outputs/
 /work/
-# Local visual-reference captures are QA material, not redistributed website assets.
-/docs/screenshots/*ref*.png
+# External reference captures and private comparisons stay outside this repository.
+# Match all formats, including JPGs; tracked history requires separate cleanup.
+/docs/screenshots/*ref*
+/docs/screenshots/*Ref*
+/docs/screenshots/*REF*
+/private-reference/
+/reference-captures/
+/docs/private/

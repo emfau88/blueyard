@@ -1358,7 +1358,7 @@ h1 span {
   }
 }
 
-/* Bulk 5: fixed BlueYard-inspired experience shell */
+/* Bulk 5: fixed emfau experience shell */
 html.experience-active,
 body.experience-active {
   background: #fff0df;
@@ -1960,7 +1960,7 @@ body.experience-active {
 .loader-note { bottom: 52px; font-size: 12px; left: 10%; position: absolute; text-align: center; width: 80%; }
 @keyframes loader-cube-turn { from { transform: rotateX(-22deg) rotateY(-35deg); } to { transform: rotateX(-22deg) rotateY(325deg); } }
 @keyframes intro-interface-in { from { opacity: 0; } to { opacity: 1; } }
-/* Bulk 7: warm manifest and white folder cards measured on the live reference. */
+/* Bulk 7: warm manifest and white folder cards. */
 .experience-shell { overflow: clip; }
 .experience-scenes:focus { outline: none; }
 .experience-scene[data-scene="manifesto"] .experience-copy { top: 30%; }
@@ -2031,7 +2031,7 @@ body.experience-active {
   .phase-ready .experience-interface { animation: none; }
 }
 
-/* Reference correction: overlays TRAVEL through the fixed space, not slide fades. */
+/* Scroll correction: overlays TRAVEL through the fixed space, not slide fades. */
 .experience-shell[data-motion="full"] .experience-scene:is([data-scene="intro"], [data-scene="manifesto"], [data-scene="gateway"], [data-scene="web"]) { transform: none; }
 .experience-shell[data-motion="full"] .experience-scene[data-scene="intro"] .experience-copy { top: var(--intro-y); }
 .experience-shell[data-motion="full"] .experience-scene[data-scene="manifesto"] .experience-copy { top: var(--manifest-y); }

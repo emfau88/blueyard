@@ -5,7 +5,7 @@ const smooth = (a: number, b: number, x: number) => {
   return t * t * (3 - 2 * t);
 };
 
-/** Own reconstruction, not the reference site's simulation. Screen-space units.
+/** Liquid transition controls in screen-space units.
  * Macro position remains scroll-controlled; time/velocity only stir the band.
  * The envelope is exactly zero at both endpoints, including on reverse travel.
  */

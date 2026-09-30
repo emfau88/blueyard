@@ -1,4 +1,4 @@
-// Deterministic original particle data, not geometry from the reference site.
+// Deterministic particle data for the emfau intro scene.
 export function createIntroParticles(count: number, outside: boolean) {
   const positions = new Float32Array(count * 3);
   const sizes = new Float32Array(count);
