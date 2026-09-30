@@ -56,7 +56,7 @@ export const worldCompositeFragment = /* glsl */ `
       } else if (baseDistance < -uBandWidth) {
         color = texture2D(uWorldB, vUv).rgb;
       } else {
-      vec3 field = liquidField(vUv);
+      vec4 field = liquidField(vUv);
       vec2 aUV = liquidSampleUV(vUv + field.xy);
       vec2 bUV = liquidSampleUV(vUv - field.xy * .78);
       vec3 a = texture2D(uWorldA, aUV).rgb;
@@ -75,10 +75,11 @@ export const worldCompositeFragment = /* glsl */ `
       color = mix(a, b, reveal);
       // A low-cost analytic refractive highlight; no full-screen bloom wash.
       vec2 slope = vec2(dFdx(field.y), dFdy(field.y)) * uResolution;
-      float crest = pow(clamp(abs(slope.y) * .20, 0., 1.), 3.);
-      float shine = band * (.045 + crest * .23);
-      color += shine * vec3(.82, .73, 1.);
-      color = mix(color, color * vec3(.98, .95, 1.04), band * .22);
+      float crest = pow(clamp(abs(slope.y) * .18, 0., 1.), 2.4);
+      float shine = band * (.055 + crest * .27 + field.w * .20);
+      color += shine * vec3(1., .57, .94) + band * crest * .06 * vec3(.90, .92, 1.);
+      float spectral = clamp(field.w * .45 + crest * .25, 0., 1.);
+      color = mix(color, color * vec3(.96, .88, 1.10), band * .20 + spectral * .13);
       }
     }
     gl_FragColor = vec4(color, 1.);

@@ -2,7 +2,7 @@
 
 Stand: 30.09.2026  
 Projektordner: bestehender lokaler Checkout; Repo-Name und Deployment-Pfad vorerst unverändert.
-Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. M0 (mobile Scroll-/Layoutoptimierung) ist lokal geprüft und als eigener Zwischenstand veröffentlicht. K4 bleibt auf ausdrücklichen Nutzerwunsch unbegonnen und wartet auf ein neues Go.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
+Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. K3.1 hat den Liquid-Übergang in einer ersten Browser-Vergleichsrunde sichtbar nachgearbeitet, ist aber nicht visuell gleichwertig abgenommen. M0 (mobile Scroll-/Layoutoptimierung) ist als eigener Zwischenstand veröffentlicht. K4.0-Prüfbasis ist erhoben; K4.1 und der Effektcode wurden noch nicht begonnen.** Exakte Liquid-/Lichtabstimmung mit dem finalen Web-Modell, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind insgesamt noch nicht abgeschlossen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
 
 ## Verbindliche Arbeitsreihenfolge
 
@@ -11,11 +11,12 @@ Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind i
 | 1 | K2 — Steuerung und Renderaufbau | Implementiert und lokal geprüft; gemeinsame Eingabedaten, getrennte Weltbilder und zentrale Farbausgabe |
 | 2 | K3 — Liquid-Übergang | Implementiert und lokal geprüft; genaue visuelle Abstimmung und Prüfung mit finalen Modellen offen |
 | 3 | M0 — Mobile Optimierung | Scrollweg verkürzen, Leerstrecken reduzieren, Inhalte auf kurzen Displays lesbar halten; vor K4 committen und pushen |
-| 4 | K4 — Partikelinteraktion | Lokale Reaktion auf Maus und Scrollimpulse mit gedämpftem Nachlauf |
-| 5 | Bulk 8 — Web-Welt | Räumliche Faserbündel, Licht, Karten und vollständiger erster Welt-Einstieg |
-| 6 | Meilenstein G1 | Gesamten Weg Intro → Manifest → Auswahl → Liquid → Web als Bewegung vergleichen |
-| 7 | Bulks 9–11 | Eigenständige Games-/Labs-Modelle, deren Übergänge und Finale |
-| 8 | Bulks 12–14 | Integration, Geräte-QA, vollständige Bewegungsabnahme und Veröffentlichung nach Freigabe |
+| 4 | K3.1 — Liquid-Finishing, erste Runde | Übergangsform, Verzerrung, Licht, Farbe und Timing mit den vorhandenen Welten gezielt vergleichen und nacharbeiten; finale Materialrunde bleibt Bulk 8/G1 |
+| 5 | K4 — Partikelinteraktion | Lokale Reaktion auf Maus und Scrollimpulse mit gedämpftem Nachlauf |
+| 6 | Bulk 8 — Web-Welt | Räumliche Faserbündel, Licht, Karten und vollständiger erster Welt-Einstieg |
+| 7 | Meilenstein G1 | Gesamten Weg Intro → Manifest → Auswahl → Liquid → Web als Bewegung vergleichen |
+| 8 | Bulks 9–11 | Eigenständige Games-/Labs-Modelle, deren Übergänge und Finale |
+| 9 | Bulks 12–14 | Integration, Geräte-QA, vollständige Bewegungsabnahme und Veröffentlichung nach Freigabe |
 
 Bulk 4 wird für jeden neuen Effekt um dessen Prüfbelege ergänzt. Externe Referenzaufnahmen und ausführliche Vergleichsanalysen bleiben lokal außerhalb des öffentlichen Repositories. Licht, Farben und Laufzeitmessung gehören bereits zu K2–K4 und jedem Modellbulk; Bulk 13 bündelt die abschließende Geräteprüfung. Die neue Reihenfolge ersetzt ältere „als Nächstes Bulk 8“-Vermerke im Änderungsprotokoll.
 
@@ -308,6 +309,20 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [x] Kleine/große Scrollschritte, Stillstand und Richtungswechsel lokal geprüft; an derselben Scrollposition bleibt die makroskopische Weltaufteilung gleich. Vollständige Bewegungsabnahme bleibt G1.
 - [ ] Keine Löcher, unerwünschte Farbsprünge oder unlesbare Texte. Vergleich zunächst mit vorhandenen Modellen, erneute Prüfung mit finaler Web-Kugel in Bulk 8.
 
+## K3.1 — Liquid-Finishing, erste Vergleichs- und Nacharbeitsrunde
+
+**Status:** Erste Shader-Nacharbeit implementiert und lokal geprüft — vollständiger Bewegungsvergleich, finale Materialabstimmung und visuelle Nutzerabnahme offen.
+**Abhängigkeiten:** K3; vor G1, Material-Finalisierung zusätzlich nach Bulk 8. Keine neue Flüssigkeitssimulation und keine fremden Assets/Shader übernehmen.
+
+- [x] Live-Referenz und emfau in denselben tatsächlichen Desktop-/Mobile-Viewports als zeitgestempelte Zustands- und kurze Bewegungsfolgen erfassen; externe Bilder nur privat ablegen. Ergebnisse und Grenzen: [K3.1-Prüfprotokoll](docs/k3-1-liquid-verification.md).
+- [ ] Vollständig synchronisierte langsame/schnelle Vorwärts-, Halte- und Rückwärtsfolgen einschließlich isolierter Maus-/Scroll-Nachläufe vermessen; die jetzigen Stichproben sind nicht pixelgenau oder eingabekalibriert.
+- [x] Abweichungen nach Grenzform/-position, Bildbrechung, Licht/Glühen, Farbe, Szenenmaterial und zeitlichem Verhalten protokollieren; unbelegte Details nicht als Originaltechnik ausgeben.
+- [x] Das vorhandene K3-Feld in einer ersten Runde gezielt nacharbeiten: breitere verschachtelte Brechung, begrenzte lokale Lichtspitzen und scrollfeste makroskopische Grenzlage. Keine bloße Wellenkante oder zusätzliche Renderwelt.
+- [x] Desktop, Mobile, Stillstand, Rückweg, Reduced Motion, Textlesbarkeit und Renderkosten lokal stichprobenartig prüfen; eigene Bilder und offene Unterschiede dokumentieren. Echte Geräte- und vollständige Bewegungsabnahme bleiben offen.
+- [ ] Mit dem finalen räumlichen Web-Modell in Bulk 8 Licht, Reflexion, Materialbrechung und Übergangstiming erneut abstimmen; erst danach G1-Bewegungsvergleich und gesonderte visuelle Nutzerabnahme.
+
+**Abnahme:** K3.1 als Implementierung gilt erst nach Browserprüfung und technischen Checks. „Optisch gleichwertig“ ist kein automatisches Ergebnis von K3.1: Der Vergleich mit dem finalen Web-Modell und die Nutzerfreigabe bleiben gesondert offen.
+
 ## M0 — Mobile Scroll-/Layoutoptimierung vor K4
 
 **Status:** Implementiert, lokal geprüft und als eigener Zwischenstand veröffentlicht
@@ -332,8 +347,20 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 ## Korrekturblock K4 — Interaktive Partikel und Intro-Material
 
-**Status:** Offen — auf Nutzerwunsch noch nicht beginnen; neues Go abwarten
+**Status:** K4.0-Prüfbasis erhoben — genaue Referenzkraftmessung und Effektimplementierung offen; K4.1 noch nicht begonnen
 **Abhängigkeiten:** K2 und K3
+
+**Konkreter Arbeitsplan:** [K4-Umsetzungsplan](docs/k4-implementation-plan.md). [K4.0-Prüfprotokoll](docs/k4-0-baseline.md) mit eigenen Belegen und Diagnosewerten ergänzt; Website-Code unverändert. Umsetzung in dieser Reihenfolge:
+
+- [x] K4.0 — Bewegungs-Prüfprotokoll und Ist-Baseline festhalten; beobachtete Wirkung von Annahmen trennen (Desktop/Mobile, sechs Positionen, Live-Stichproben, Mengen und Laufzeitdaten). Genaue zusätzliche Maus-/Scrollkraftmessung bleibt im Arbeitsplan ausdrücklich offen.
+- [ ] K4.1 — Kugellokale Eingabe und getrennte Maus-/Scrollkanäle implementieren und bei Transformationen prüfen.
+- [ ] K4.2 — Begrenztes Strömungsfeld, gerichtete Impulse, Nachlauf und Rückkehr zur Ruheverteilung implementieren.
+- [ ] K4.3 — Feldvariante anhand von Bewegungsbelegen bewerten; GPU-Partikelzustand nur bei dokumentiertem Bedarf ergänzen.
+- [ ] K4.4 — Innen-/Außencharakter, Blickraumtiefe, Transparenz und Hüllenlicht abstimmen.
+- [ ] K4.5 — Mobile, Touch, Freeze, Reduced Motion, Resume und Ressourcenverwaltung prüfen.
+- [ ] K4.6 — Regressionstests, Bild-/Bewegungsbelege und Laufzeitvergleich abschließen; technische Prüfung und Nutzerabnahme getrennt führen.
+
+Die folgenden ursprünglichen K4-Anforderungen bleiben als übergreifende Abschlusscheckliste bestehen:
 
 - [ ] Maus- und Scrollreaktion bei jeweils festgehaltenem anderen Eingang separat prüfen; Einflussbereich, Richtung, Stärke und Nachlauf dokumentieren.
 - [ ] Mausposition in den Raum der transformierten Kugel umrechnen, sodass die lokale Reaktion auch nach Verschieben, Skalieren und Rotieren am richtigen Ort liegt.
@@ -364,7 +391,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [ ] Szenennummer und kleine Navigationssteuerung unten links umsetzen
 - [ ] feste Status-/Tickerleiste unten rechts beziehungsweise unten überführen
 - [ ] schwebende Web-Leistungskarten räumlich um das Objekt anordnen
-- [ ] Liquid-Einstieg aus K3 mit dem fertigen Fasermodell erneut abstimmen; Ausstieg zur Games-Welt vorbereiten, vollständige Gegenwelt und Übergang in Bulk 9 prüfen.
+- [ ] Liquid-Einstieg gemäß [offener K3.1-Abweichungen](docs/k3-1-liquid-verification.md) mit dem fertigen Fasermodell erneut nach Licht, Reflexion, Farbe und Timing abstimmen; Ausstieg zur Games-Welt vorbereiten, vollständige Gegenwelt und Übergang in Bulk 9 prüfen.
 - [ ] Verlinkung zur ausführlicheren Web-Seite herstellen
 
 **Abnahme:**
@@ -505,8 +532,8 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 | Visuelle Prüfbasis | Bulk 4, fortgeschrieben je Effekt | Gespeicherte Szene-/Bewegungsbelege; vollständig noch offen |
 | Scroll-/Layoutgerüst | Bulks 5–7 und K1 | Vorhanden und lokal geprüft; Effektqualität weiterhin offen |
 | Gemeinsame Renderbasis | K2 | Vorhanden und lokal geprüft; getrennte Weltbilder, Eingaben und zentrale Ausgabe |
-| Liquid-/Interaktionsbasis | K2–K4 | Bildverzerrender Übergang und lokale Partikelreaktion geprüft |
-| G1 — Erste vollständig ausgearbeitete Strecke | K2–K4 und Bulk 8 | Intro bis Web einschließlich Liquid, Faserstruktur und Licht als Bewegung vergleichbar |
+| Liquid-/Interaktionsbasis | K2–K4 einschließlich K3.1 | Bildverzerrender Übergang nachgearbeitet; lokale Partikelreaktion und visuelle Liquid-Abnahme weiterhin offen |
+| G1 — Erste vollständig ausgearbeitete Strecke | K2–K4, K3.1 und Bulk 8 | Intro bis Web einschließlich final abgestimmtem Liquid, Faserstruktur und Licht als Bewegung vergleichbar; visuelle Nutzerabnahme separat |
 | Vollständige visuelle Alpha | Bulk 11 | Alle eigenen Weltmodelle, Übergänge und Finalszene vorhanden und einzeln geprüft |
 | Release Candidate | Bulk 13 | Technisch, responsiv, performant und inhaltlich geprüft |
 | Veröffentlichung | Bulk 14 | Bild- und Bewegungsabnahme sowie ausdrückliche Veröffentlichungsfreigabe |
@@ -538,3 +565,6 @@ Historische Einträge beschreiben den damaligen Stand; für Reihenfolge und Abna
 - **30.09.2026:** Repository-Dokumentation auf emfau ausgerichtet, externe Referenzbilder und ausführliche Vergleichsunterlagen lokal außerhalb des Repos gesichert. Bilddateien werden zusätzlich aus der veröffentlichten Git-Historie bereinigt. Arbeitspakete und bestehende Checkboxen bleiben erhalten. Website, Repo-Name, Live-Adresse und Deployment-Konfiguration bleiben unverändert; technische Zusammenfassung unter `docs/technical-verification.md`.
 - **30.09.2026:** M0 vor K4: mobile Eingabestrecke von 19 auf 9,5 Viewporthöhen verkürzt, alle kanonischen Effektpositionen erhalten, Text-Leerstrecken geschlossen und Karten für kurze Displays kompakter gesetzt. Desktop-Eingabe unverändert. 25 Tests, TypeScript, Lint und Pages-Build bestanden; DE/EN, Rückweg und reduzierte Bewegung lokal im Browser geprüft. Eigener Commit/Push vor Beginn von K4; reale Mobilgeräte bleiben Bulk 13.
 - **30.09.2026:** M0 als `2893247` gepusht; Pages-Deployment erfolgreich. Kurze mobile Auswahlüberschrift in der Nachprüfung gegen Kartenüberlappung korrigiert. Anschließenden K4-Start auf ausdrücklichen Nutzerwunsch zurückgestellt; keine K4-Implementierung vorgenommen.
+- **30.09.2026:** K4-Umsetzungsplan anhand des aktuellen Codes in sieben aufeinanderfolgende Teilpakete konkretisiert: Prüfbasis, lokale Eingabe, Feld/Nachlauf, GPU-Entscheidung, Material/Tiefe, Lebenszyklus und Abnahme. Plan unter `docs/k4-implementation-plan.md`; K4 bleibt bis zu einem neuen Go unbegonnen. Keine Änderungen am Website-Code und kein Commit/Push durch diese Planungsanfrage.
+- **30.09.2026:** K4.0 nach reparierter interner Browseranbindung fortgesetzt: Archivlücken geprüft, Live-Stichproben separat privat gesichert, eigene Desktop-/Mobile-Baseline an sechs Positionen und frische Renderdiagnose erfasst. 25 Tests bestanden; Website-Code unverändert. Eigenströmung qualitativ belegt, zusätzliche Referenzkräfte/Nachlauf noch nicht sauber vermessen. Ergebnisse unter `docs/k4-0-baseline.md`; K4.1 und Commit/Push nicht begonnen.
+- **30.09.2026:** K3.1 als verbindlichen Liquid-Finishing-Schritt ergänzt und eine erste Shader-Nacharbeit durchgeführt: breitere verschachtelte Brechung, lokale Kaustik-/Lichtspitzen und begrenzte Farbabstimmung. Desktop/Mobile im Browser verglichen, eigene Belege unter `docs/screenshots/k3-1/`, externe Bilder ausschließlich im privaten Archiv. 25 Tests, TypeScript, Lint und Pages-Build bestanden. Ergebnis ausdrücklich nicht als optisch gleichwertig markiert; finale Material- und Bewegungsabnahme bleiben Bulk 8/G1. Kein Commit/Push.

@@ -12,6 +12,8 @@ Stand: 30.09.2026. Zusammenfassung der bisherigen lokalen Prüfungen, keine fina
 | K1 | Scrollstrecke in Viewporthöhen, kleine Schritte, Rückwärtsweg und getrennte Text-/Objektbewegung | Nutzerabnahme der vollständigen Eröffnungsstrecke bei G1 |
 | K2 | Gemeinsamer DOM-/WebGL-Frame, zwei Welt-Render-Targets, Farbausgabe, Resize, Ressourcenverwaltung und Context-Loss-Fallback | Echte GPU-/Mobilgeräte-Messung und finale Materialien |
 | K3 | Bildverzerrung beider Welten, Stillstand/Rückweg, Mobile/Reduced Motion, scharfe DOM-Texte | Finale Licht-/Liquid-Abstimmung und lokale Partikelbahnen K4 |
+| K3.1 | [Erste Liquid-Nacharbeit](k3-1-liquid-verification.md): breiteres verschachteltes Feld, lokale Lichtspitzen; Desktop/Mobile-Vergleich, Rückweg, Reduced Motion, frischer Browserstart ohne Shaderfehler; 25 Tests, Typen, Lint, Pages-Build | Synchronisierte Bewegungsabnahme und finale Abstimmung mit dem räumlichen Web-Modell in Bulk 8/G1; keine Gleichwertigkeitsfreigabe |
+| K4.0 | [Lokale Baseline](k4-0-baseline.md): sechs Desktop-/Mobile-Positionen, Mengen, Live-Stichproben, Freeze/Rückweg und Renderdiagnose | Zusätzliche Referenzkräfte/Nachlauf quantitativ, gesamte K4-Effektimplementierung und Nutzerabnahme |
 
 ## Render- und Eingabevertrag
 
@@ -28,12 +30,13 @@ Eigene Vorschauaufnahmen liegen unter [screenshots/](screenshots/). Beispiele:
 - [K2 Komposition](screenshots/k2-composite-mid.png) und [Fallback](screenshots/k2-fallback-mobile.png)
 - [K3 Bildverzerrung](screenshots/k3-local-middle.png) gegenüber [neutraler Komposition](screenshots/k3-local-neutral.png)
 - [K3 Rückweg](screenshots/k3-local-reverse-settled.png), [Mobil](screenshots/k3-local-mobile.png) und [Reduced Motion](screenshots/k3-local-reduced.png)
+- [K3.1 Anfang](screenshots/k3-1/desktop-early.jpg), [Mitte](screenshots/k3-1/desktop-middle.jpg), [Ende](screenshots/k3-1/desktop-late.jpg) und [Mobil](screenshots/k3-1/mobile-middle.jpg)
 
 Die Aufnahmen stammen aus unterschiedlichen Entwicklungsständen und bilden nicht zwingend die aktuellen Texte ab. Geprüfte Viewports unter anderem 1281 × 721, 1282 × 722, 1441 × 900 und 391 × 844. Mobile Viewports im Desktopbrowser sind kein Ersatz für echte Geräte- oder Touchprüfungen.
 
 ## Automatisierte Prüfungen
 
-Nach dem Textupdate bestanden 21 Tests sowie TypeScript und Lint. Frühere Blöcke dokumentierten 3 Tests (Bulk 6), 4 (Bulk 7), 7 (K1), 15 (K2) und 20 (K3). Die Quelltext-/Logiktests ersetzen keine GPU-Bildprüfung oder visuelle Nutzerabnahme.
+Nach dem Textupdate bestanden 21 Tests sowie TypeScript und Lint. M0 ergänzte vier Tests: zur K4.0-Baseline wurden die bestehenden 25 Tests erneut erfolgreich ausgeführt. Frühere Blöcke dokumentierten 3 Tests (Bulk 6), 4 (Bulk 7), 7 (K1), 15 (K2) und 20 (K3). Die Quelltext-/Logiktests ersetzen keine GPU-Bildprüfung oder visuelle Nutzerabnahme.
 
 ```sh
 npm test

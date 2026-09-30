@@ -15,7 +15,7 @@ test("liquid endpoints are exact identities with bounded, continuous activation"
   for (let edge = -.18; edge <= 1.18; edge += .001) {
     const value = liquidTransition(base, edge, false);
     assert.ok(value.envelope >= 0 && value.envelope <= 1);
-    assert.ok(value.strength >= 0 && value.strength <= .11);
+    assert.ok(value.strength >= 0 && value.strength <= .12);
     assert.ok(Math.abs(value.strength - previous) < .001);
     previous = value.strength;
   }
