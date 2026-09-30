@@ -2096,6 +2096,9 @@ body.experience-active {
 }
 @media (max-width: 699px) and (max-height: 700px) {
   .experience-shell[data-motion="full"] .experience-scene[data-scene="manifesto"] .experience-copy { top: calc(var(--manifest-y) - 8svh); }
+  .experience-scene[data-scene="gateway"] .experience-copy { top: 15%; }
+  .experience-shell[data-motion="full"] .experience-scene[data-scene="gateway"] .experience-copy { top: calc(var(--gateway-y) - 10svh); }
+  .experience-scene[data-scene="gateway"] h2 { font-size: 24px; }
   .experience-folder,
   .experience-shell[data-motion="full"] .experience-folder { width: min(68vw, 250px); }
   .experience-folder-face { min-height: 78px; gap: 6px; }

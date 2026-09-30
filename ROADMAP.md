@@ -2,7 +2,7 @@
 
 Stand: 30.09.2026  
 Projektordner: bestehender lokaler Checkout; Repo-Name und Deployment-Pfad vorerst unverändert.
-Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. Vor K4 wird M0 (mobile Scroll-/Layoutoptimierung) geprüft und veröffentlicht. Danach folgt K4.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
+Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. M0 (mobile Scroll-/Layoutoptimierung) ist lokal geprüft und als eigener Zwischenstand veröffentlicht. K4 bleibt auf ausdrücklichen Nutzerwunsch unbegonnen und wartet auf ein neues Go.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
 
 ## Verbindliche Arbeitsreihenfolge
 
@@ -310,7 +310,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 ## M0 — Mobile Scroll-/Layoutoptimierung vor K4
 
-**Status:** Implementiert und lokal geprüft; Veröffentlichung dieses Zwischenstands
+**Status:** Implementiert, lokal geprüft und als eigener Zwischenstand veröffentlicht
 **Abhängigkeiten:** K1–K3; eigener Zwischenstand vor K4
 
 - [x] Mobilen Eingabeweg von 19 auf 9,5 Viewporthöhen verkürzen; gesamte Render-Timeline und alle Effekte erhalten.
@@ -319,7 +319,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [x] Karten und Texte für kleine/kurze Displays kompakter anordnen; CTA-Texte und Links erhalten.
 - [x] Desktop-Eingabeverhalten exakt erhalten und Regressionstests ergänzen.
 - [x] DE/EN, kurze Displays, Rückwärtsweg und reduzierte Bewegung abschließend im Browser prüfen (375 × 568; zusätzlich 391 × 844 und Desktop 1441 × 900).
-- [x] Erfolgreichen Pages-Build als separaten Zwischenstand zur Veröffentlichung committen; anschließend pushen und K4 beginnen.
+- [x] Erfolgreichen Pages-Build als separaten Zwischenstand committen und pushen (Hauptcommit `2893247`); Pages-Workflow erfolgreich. K4 erst nach neuem Go.
 - [ ] Nachprüfung auf realen iOS-/Android-Geräten (Bulk 13); Desktop-Viewportprüfung ersetzt diese nicht.
 
 **Betroffene Stellen:** `lib/mobile-experience.ts`, `components/emfau-landing.tsx`, ausschließlich mobile Regeln in `app/globals.css`. `tsconfig.json` erlaubt direkte TypeScript-Modulimporte für die Node-Tests; ESLint ignoriert den erzeugten Pages-Build.
@@ -328,9 +328,11 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 **Prüfstand:** 25 automatisierte Tests, TypeScript, ESLint und Pages-Build erfolgreich. DE/EN-Kontakttexte und Auswahlkarten passen bei 375 × 568; Rückwärtsweg funktioniert. Die vorherige Textlücke zwischen Labs und Kontakt ist durch ein überlappendes mobiles Texttracking geschlossen. Echte Geräteprüfung und finale visuelle Nutzerabnahme bleiben offen.
 
+**Nachprüfung:** Überschrift der Auswahl auf kurzen Displays zusätzlich nach oben versetzt (auch bei voller Bewegung), damit sie nicht von der ersten Karte verdeckt wird. Bei 375 × 568 endet sie in DE/EN bei rund 114 px; die erste Karte beginnt bei rund 159 px.
+
 ## Korrekturblock K4 — Interaktive Partikel und Intro-Material
 
-**Status:** Offen  
+**Status:** Offen — auf Nutzerwunsch noch nicht beginnen; neues Go abwarten
 **Abhängigkeiten:** K2 und K3
 
 - [ ] Maus- und Scrollreaktion bei jeweils festgehaltenem anderen Eingang separat prüfen; Einflussbereich, Richtung, Stärke und Nachlauf dokumentieren.
@@ -535,3 +537,4 @@ Historische Einträge beschreiben den damaligen Stand; für Reihenfolge und Abna
 - **30.09.2026:** GitHub-Pages-Testvorschau veröffentlicht und deutsche Texte aktualisiert; nach dem Textupdate 21 Tests sowie TypeScript/Lint bestanden. Die Testveröffentlichung ist keine finale Designfreigabe.
 - **30.09.2026:** Repository-Dokumentation auf emfau ausgerichtet, externe Referenzbilder und ausführliche Vergleichsunterlagen lokal außerhalb des Repos gesichert. Bilddateien werden zusätzlich aus der veröffentlichten Git-Historie bereinigt. Arbeitspakete und bestehende Checkboxen bleiben erhalten. Website, Repo-Name, Live-Adresse und Deployment-Konfiguration bleiben unverändert; technische Zusammenfassung unter `docs/technical-verification.md`.
 - **30.09.2026:** M0 vor K4: mobile Eingabestrecke von 19 auf 9,5 Viewporthöhen verkürzt, alle kanonischen Effektpositionen erhalten, Text-Leerstrecken geschlossen und Karten für kurze Displays kompakter gesetzt. Desktop-Eingabe unverändert. 25 Tests, TypeScript, Lint und Pages-Build bestanden; DE/EN, Rückweg und reduzierte Bewegung lokal im Browser geprüft. Eigener Commit/Push vor Beginn von K4; reale Mobilgeräte bleiben Bulk 13.
+- **30.09.2026:** M0 als `2893247` gepusht; Pages-Deployment erfolgreich. Kurze mobile Auswahlüberschrift in der Nachprüfung gegen Kartenüberlappung korrigiert. Anschließenden K4-Start auf ausdrücklichen Nutzerwunsch zurückgestellt; keine K4-Implementierung vorgenommen.
