@@ -1,0 +1,91 @@
+[
+  {
+    "canvas": {
+      "engine": "three.js r186",
+      "frameId": "41542",
+      "renderStats": "{\"passes\":2,\"calls\":3,\"textures\":2,\"geometries\":4,\"width\":1282,\"height\":722,\"format\":\"rgba16f-linear\",\"cpuMs\":0.13,\"view\":\"composite\",\"frameMs\":3.37,\"maxFrameMs\":16.7,\"samples\":149,\"cssWidth\":1282,\"cssHeight\":722}",
+      "rendererId": "cf7ae130-3535-4e9b-9e29-12d2b707da57"
+    },
+    "root": {
+      "frameId": "41542",
+      "input": "{\"id\":41542,\"progress\":0.34210526315789475,\"scrollUnits\":6.5,\"scrollVelocity\":4.804839151857677e-46,\"pointer\":{\"x\":-0.7503211896393732,\"y\":0.4735266567994624,\"active\":true,\"velocityX\":2.351135965874224e-48,\"velocityY\":2.351135965874224e-48},\"time\":41.909399999998634,\"delta\":0.0027000000000116414,\"intervalMs\":2.7000000000116415,\"reducedMotion\":false}",
+      "motion": "full",
+      "opening": "false",
+      "scene": "web",
+      "scrollUnits": "6.500"
+    },
+    "stage": "web"
+  },
+  {
+    "canvas": {
+      "engine": "three.js r186",
+      "frameId": "44441",
+      "renderStats": "{\"passes\":3,\"calls\":7,\"textures\":2,\"geometries\":4,\"width\":1282,\"height\":722,\"format\":\"rgba16f-linear\",\"cpuMs\":0.2,\"view\":\"composite\",\"frameMs\":4.35,\"maxFrameMs\":19.4,\"samples\":115,\"cssWidth\":1282,\"cssHeight\":722}",
+      "rendererId": "cf7ae130-3535-4e9b-9e29-12d2b707da57"
+    },
+    "root": {
+      "frameId": "44441",
+      "input": "{\"id\":44441,\"progress\":0.2631578947368421,\"scrollUnits\":5,\"scrollVelocity\":-9.91148399567302e-40,\"pointer\":{\"x\":-0.7503211896393732,\"y\":0.4735266567994624,\"active\":true,\"velocityX\":2.9472938603004568e-89,\"velocityY\":2.9472938603004568e-89},\"time\":53.21099999999689,\"delta\":0.0029000000000232833,\"intervalMs\":2.900000000023283,\"reducedMotion\":false}",
+      "motion": "full",
+      "opening": "true",
+      "scene": "gateway",
+      "scrollUnits": "5.000"
+    },
+    "stage": "reverse-overlap"
+  },
+  {
+    "canvas": {
+      "engine": "three.js r186",
+      "frameId": "48296",
+      "renderStats": "{\"passes\":3,\"calls\":7,\"textures\":2,\"geometries\":4,\"width\":1282,\"height\":722,\"format\":\"rgba16f-linear\",\"cpuMs\":0.18,\"view\":\"composite\",\"frameMs\":3.65,\"maxFrameMs\":19.4,\"samples\":137,\"cssWidth\":1282,\"cssHeight\":722}",
+      "rendererId": "cf7ae130-3535-4e9b-9e29-12d2b707da57"
+    },
+    "root": {
+      "frameId": "48296",
+      "input": "{\"id\":48296,\"progress\":0.26890946226912404,\"scrollUnits\":5.109279783113357,\"scrollVelocity\":6.167151688253123e-54,\"pointer\":{\"x\":0.7165418212293089,\"y\":-0.3854562775823889,\"active\":true,\"velocityX\":2.4052230363934276e-54,\"velocityY\":-2.4052230363934276e-54},\"time\":68.165,\"delta\":0.0027999999999883587,\"intervalMs\":2.7999999999883585,\"reducedMotion\":false}",
+      "motion": "full",
+      "opening": "true",
+      "scene": "gateway",
+      "scrollUnits": "5.109"
+    },
+    "stage": "wheel-settled"
+  },
+  {
+    "canvas": {
+      "engine": "three.js r186",
+      "frameId": "54128",
+      "renderStats": "{\"passes\":3,\"calls\":7,\"textures\":2,\"geometries\":4,\"width\":391,\"height\":844,\"format\":\"rgba16f-linear\",\"cpuMs\":0.14,\"view\":\"composite\",\"frameMs\":3.52,\"maxFrameMs\":16.5,\"samples\":143,\"cssWidth\":391,\"cssHeight\":844}",
+      "rendererId": "cf7ae130-3535-4e9b-9e29-12d2b707da57"
+    },
+    "root": {
+      "frameId": "54128",
+      "input": "{\"id\":54128,\"progress\":0.26890946226912404,\"scrollUnits\":5.109279783113357,\"scrollVelocity\":0,\"pointer\":{\"x\":0,\"y\":0,\"active\":false,\"velocityX\":0,\"velocityY\":0},\"time\":90.89860000001637,\"delta\":0.0028999999999650755,\"intervalMs\":2.8999999999650754,\"reducedMotion\":false}",
+      "motion": "full",
+      "opening": "true",
+      "scene": "gateway",
+      "scrollUnits": "5.109"
+    },
+    "stage": "mobile-overlap",
+    "viewport": [
+      391,
+      844
+    ]
+  },
+  {
+    "canvas": {
+      "engine": "three.js r186",
+      "frameId": "59598",
+      "renderStats": "{\"passes\":2,\"calls\":3,\"textures\":2,\"geometries\":4,\"width\":391,\"height\":844,\"format\":\"rgba16f-linear\",\"cpuMs\":0.11,\"view\":\"composite\",\"frameMs\":7.08,\"maxFrameMs\":61.2,\"samples\":71,\"cssWidth\":391,\"cssHeight\":844}",
+      "rendererId": "cf7ae130-3535-4e9b-9e29-12d2b707da57"
+    },
+    "root": {
+      "frameId": "59598",
+      "input": "{\"id\":59598,\"progress\":0.34210526315789475,\"scrollUnits\":6.5,\"scrollVelocity\":0,\"pointer\":{\"x\":-0.18079622398259487,\"y\":0.5499594155873493,\"active\":true,\"velocityX\":0,\"velocityY\":0},\"time\":91.06800000001661,\"delta\":0.0027999999999883587,\"intervalMs\":2.7999999999883585,\"reducedMotion\":true}",
+      "motion": "reduced",
+      "opening": "false",
+      "scene": "web",
+      "scrollUnits": "6.500"
+    },
+    "stage": "mobile-reduced-web"
+  }
+]
