@@ -2,7 +2,7 @@
 
 Stand: 30.09.2026  
 Projektordner: bestehender lokaler Checkout; Repo-Name und Deployment-Pfad vorerst unverändert.
-Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. Der erste Farbwechsel verzerrt jetzt beide vollständigen Weltbilder. Nächster Umsetzungsblock: K4.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
+Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. Vor K4 wird M0 (mobile Scroll-/Layoutoptimierung) geprüft und veröffentlicht. Danach folgt K4.** Exakte Liquid-/Lichtabstimmung, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind offen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
 
 ## Verbindliche Arbeitsreihenfolge
 
@@ -10,11 +10,12 @@ Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind i
 |---|---|---|
 | 1 | K2 — Steuerung und Renderaufbau | Implementiert und lokal geprüft; gemeinsame Eingabedaten, getrennte Weltbilder und zentrale Farbausgabe |
 | 2 | K3 — Liquid-Übergang | Implementiert und lokal geprüft; genaue visuelle Abstimmung und Prüfung mit finalen Modellen offen |
-| 3 | K4 — Partikelinteraktion | Lokale Reaktion auf Maus und Scrollimpulse mit gedämpftem Nachlauf |
-| 4 | Bulk 8 — Web-Welt | Räumliche Faserbündel, Licht, Karten und vollständiger erster Welt-Einstieg |
-| 5 | Meilenstein G1 | Gesamten Weg Intro → Manifest → Auswahl → Liquid → Web als Bewegung vergleichen |
-| 6 | Bulks 9–11 | Eigenständige Games-/Labs-Modelle, deren Übergänge und Finale |
-| 7 | Bulks 12–14 | Integration, Geräte-QA, vollständige Bewegungsabnahme und Veröffentlichung nach Freigabe |
+| 3 | M0 — Mobile Optimierung | Scrollweg verkürzen, Leerstrecken reduzieren, Inhalte auf kurzen Displays lesbar halten; vor K4 committen und pushen |
+| 4 | K4 — Partikelinteraktion | Lokale Reaktion auf Maus und Scrollimpulse mit gedämpftem Nachlauf |
+| 5 | Bulk 8 — Web-Welt | Räumliche Faserbündel, Licht, Karten und vollständiger erster Welt-Einstieg |
+| 6 | Meilenstein G1 | Gesamten Weg Intro → Manifest → Auswahl → Liquid → Web als Bewegung vergleichen |
+| 7 | Bulks 9–11 | Eigenständige Games-/Labs-Modelle, deren Übergänge und Finale |
+| 8 | Bulks 12–14 | Integration, Geräte-QA, vollständige Bewegungsabnahme und Veröffentlichung nach Freigabe |
 
 Bulk 4 wird für jeden neuen Effekt um dessen Prüfbelege ergänzt. Externe Referenzaufnahmen und ausführliche Vergleichsanalysen bleiben lokal außerhalb des öffentlichen Repositories. Licht, Farben und Laufzeitmessung gehören bereits zu K2–K4 und jedem Modellbulk; Bulk 13 bündelt die abschließende Geräteprüfung. Die neue Reihenfolge ersetzt ältere „als Nächstes Bulk 8“-Vermerke im Änderungsprotokoll.
 
@@ -307,6 +308,26 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [x] Kleine/große Scrollschritte, Stillstand und Richtungswechsel lokal geprüft; an derselben Scrollposition bleibt die makroskopische Weltaufteilung gleich. Vollständige Bewegungsabnahme bleibt G1.
 - [ ] Keine Löcher, unerwünschte Farbsprünge oder unlesbare Texte. Vergleich zunächst mit vorhandenen Modellen, erneute Prüfung mit finaler Web-Kugel in Bulk 8.
 
+## M0 — Mobile Scroll-/Layoutoptimierung vor K4
+
+**Status:** Implementiert und lokal geprüft; Veröffentlichung dieses Zwischenstands
+**Abhängigkeiten:** K1–K3; eigener Zwischenstand vor K4
+
+- [x] Mobilen Eingabeweg von 19 auf 9,5 Viewporthöhen verkürzen; gesamte Render-Timeline und alle Effekte erhalten.
+- [x] Stückweise, reversible Zuordnung der mobilen Eingabestrecke zu den vorhandenen Szenenankern implementieren; keine automatischen Sprünge.
+- [x] Texte der späteren Themenwelten durchgehend lesbar halten; Leerstrecke zwischen Labs und Kontakt schließen.
+- [x] Karten und Texte für kleine/kurze Displays kompakter anordnen; CTA-Texte und Links erhalten.
+- [x] Desktop-Eingabeverhalten exakt erhalten und Regressionstests ergänzen.
+- [x] DE/EN, kurze Displays, Rückwärtsweg und reduzierte Bewegung abschließend im Browser prüfen (375 × 568; zusätzlich 391 × 844 und Desktop 1441 × 900).
+- [x] Erfolgreichen Pages-Build als separaten Zwischenstand zur Veröffentlichung committen; anschließend pushen und K4 beginnen.
+- [ ] Nachprüfung auf realen iOS-/Android-Geräten (Bulk 13); Desktop-Viewportprüfung ersetzt diese nicht.
+
+**Betroffene Stellen:** `lib/mobile-experience.ts`, `components/emfau-landing.tsx`, ausschließlich mobile Regeln in `app/globals.css`. `tsconfig.json` erlaubt direkte TypeScript-Modulimporte für die Node-Tests; ESLint ignoriert den erzeugten Pages-Build.
+
+**Abnahme:** Mobiler Scrollweg halbiert, alle Szenen und Übergänge erreichbar, Karten auf kurzen Displays vollständig bedienbar; keine Änderung der Desktop-Render-Timeline und keine entfernten Effekte.
+
+**Prüfstand:** 25 automatisierte Tests, TypeScript, ESLint und Pages-Build erfolgreich. DE/EN-Kontakttexte und Auswahlkarten passen bei 375 × 568; Rückwärtsweg funktioniert. Die vorherige Textlücke zwischen Labs und Kontakt ist durch ein überlappendes mobiles Texttracking geschlossen. Echte Geräteprüfung und finale visuelle Nutzerabnahme bleiben offen.
+
 ## Korrekturblock K4 — Interaktive Partikel und Intro-Material
 
 **Status:** Offen  
@@ -513,3 +534,4 @@ Historische Einträge beschreiben den damaligen Stand; für Reihenfolge und Abna
 - **30.09.2026:** K3 implementiert: gemeinsame mehrskalige Bildverzerrung beider Welten, scrollgebundene Lage, zeitabhängige Strömung, begrenzte Eingabeimpulse, Farbsäume/Reflexe und mobile/reduzierte Varianten. 20 Tests sowie TypeScript/Lint/Build bestanden; genaue visuelle Abstimmung bleibt offen. Nächster Block K4.
 - **30.09.2026:** GitHub-Pages-Testvorschau veröffentlicht und deutsche Texte aktualisiert; nach dem Textupdate 21 Tests sowie TypeScript/Lint bestanden. Die Testveröffentlichung ist keine finale Designfreigabe.
 - **30.09.2026:** Repository-Dokumentation auf emfau ausgerichtet, externe Referenzbilder und ausführliche Vergleichsunterlagen lokal außerhalb des Repos gesichert. Bilddateien werden zusätzlich aus der veröffentlichten Git-Historie bereinigt. Arbeitspakete und bestehende Checkboxen bleiben erhalten. Website, Repo-Name, Live-Adresse und Deployment-Konfiguration bleiben unverändert; technische Zusammenfassung unter `docs/technical-verification.md`.
+- **30.09.2026:** M0 vor K4: mobile Eingabestrecke von 19 auf 9,5 Viewporthöhen verkürzt, alle kanonischen Effektpositionen erhalten, Text-Leerstrecken geschlossen und Karten für kurze Displays kompakter gesetzt. Desktop-Eingabe unverändert. 25 Tests, TypeScript, Lint und Pages-Build bestanden; DE/EN, Rückweg und reduzierte Bewegung lokal im Browser geprüft. Eigener Commit/Push vor Beginn von K4; reale Mobilgeräte bleiben Bulk 13.

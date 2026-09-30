@@ -14,7 +14,8 @@ import { ExperienceCanvas } from "@/components/experience-canvas";
 import { ExperienceLoader } from "@/components/experience-loader";
 import { ExperienceGateway } from "@/components/experience-gateway";
 import { gatewayCardMotion, warmSceneOpacity } from "@/lib/gateway-motion";
-import { advanceScroll, followScroll, openingTextMotion, SCROLL_UNITS } from "@/lib/opening-motion";
+import { followScroll, openingTextMotion, SCROLL_UNITS } from "@/lib/opening-motion";
+import { advanceResponsiveScroll, mobileSceneTrack, mobileScrollDistance } from "@/lib/mobile-experience";
 import { initialExperienceFrame, sampleExperienceFrame, pointerInViewport, type ExperienceDraw, type ExperiencePointer, type RenderOptions, type RenderView } from "@/lib/experience-input";
 import { loadingProgress, loadingComplete, LOAD_TIMEOUT_MS, LOADER_EXIT_MS } from "@/lib/experience-loading";
 import { copy, type Locale } from "@/lib/content";
@@ -180,7 +181,10 @@ export function EmfauLanding({ locale }: Props) {
 
   const moveProgress = useCallback(
     (deltaPixels: number) => {
-      targetProgressRef.current = advanceScroll(targetProgressRef.current, deltaPixels, window.innerHeight);
+      const root = rootRef.current;
+      const mobile = (root?.clientWidth ?? window.innerWidth) < 700;
+      const height = mobile ? (root?.clientHeight ?? window.innerHeight) : window.innerHeight;
+      targetProgressRef.current = advanceResponsiveScroll(targetProgressRef.current, deltaPixels, height, mobile);
     },
     [],
   );
@@ -269,6 +273,7 @@ export function EmfauLanding({ locale }: Props) {
         if (debugEnabled) root.dataset.input = JSON.stringify(frame);
         const height = root.clientHeight;
         const mobile = root.clientWidth < 700;
+        root.dataset.scrollDistance = (mobile ? mobileScrollDistance(progressRef.current) : frame.scrollUnits).toFixed(3);
         const tracks = openingTextMotion(progressRef.current, height, mobile);
         root.style.setProperty("--intro-y", `${tracks.intro}px`);
         root.style.setProperty("--manifest-y", `${mobile ? tracks.mobileManifesto : tracks.manifesto}px`);
@@ -285,7 +290,7 @@ export function EmfauLanding({ locale }: Props) {
         const blend = mix * mix * (3 - 2 * mix);
         const channels = [16, 8, 0].map(shift => Math.round(((from.background >> shift) & 255) * (1 - blend) + ((to.background >> shift) & 255) * blend));
         root.style.setProperty("--scene-background", `rgb(${channels.join(",")})`);
-        experienceScenes.forEach((scene) => {
+        experienceScenes.forEach((scene, index) => {
           const distance = Math.abs(progressRef.current - scene.anchor);
           let strength = Math.max(0, 1 - distance / 0.115);
           if (!motionReduced) {
@@ -293,8 +298,13 @@ export function EmfauLanding({ locale }: Props) {
             if (scene.id === "manifesto") strength = tracks.units > .6 && tracks.units < 3.1 ? 1 : 0;
             if (scene.id === "gateway") strength = tracks.gatewayVisible ? 1 : 0;
             if (scene.id === "web") strength = tracks.units > 5.6 && tracks.units < 7.5 ? 1 : strength;
+            if (mobile && index >= 3) {
+              const track = mobileSceneTrack(progressRef.current, index, height);
+              strength = track.opacity;
+              root.style.setProperty(`--mobile-shift-${scene.id}`, `${track.shift.toFixed(2)}px`);
+            }
           }
-          const offset = Math.min(42, distance * 340);
+          const offset = mobile && index >= 3 ? 0 : Math.min(42, distance * 340);
           root.style.setProperty(`--scene-${scene.id}`, strength.toFixed(4));
           root.style.setProperty(`--offset-${scene.id}`, `${offset.toFixed(2)}px`);
         });
@@ -484,6 +494,7 @@ export function EmfauLanding({ locale }: Props) {
           const style = {
             "--scene-strength": `var(--scene-${scene.id}, 0)`,
             "--scene-offset": `var(--offset-${scene.id}, 42px)`,
+            "--mobile-copy-shift": `var(--mobile-shift-${scene.id}, 0px)`,
           } as CSSProperties;
 
           return (

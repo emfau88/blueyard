@@ -2054,3 +2054,56 @@ body.experience-active {
   .experience-scene[data-scene="web"] .experience-copy { left: 24px; width: calc(100vw - 48px); max-width: none; top: 65%; }
   .experience-opening-bridge { left: 24px; width: calc(100vw - 48px); }
 }
+
+/* Mobile pre-K4: compact input distance and readable copy through every world. */
+@media (max-width: 699px) {
+  .experience-scene[data-scene="gateway"] .experience-copy { top: 20%; }
+  .experience-folder,
+  .experience-shell[data-motion="full"] .experience-folder { width: min(68vw, 270px); }
+  .experience-folder::before { height: 18px; }
+  .experience-folder-face { min-height: 94px; padding: 10px 16px; }
+  .folder-web,
+  .experience-shell[data-motion="full"] .folder-web { top: 30%; }
+  .folder-games,
+  .experience-shell[data-motion="full"] .folder-games { top: calc(30% + 126px); }
+  .folder-labs,
+  .experience-shell[data-motion="full"] .folder-labs { top: calc(30% + 252px); }
+
+  .experience-shell .experience-scene:is([data-scene="web"], [data-scene="games"], [data-scene="labs"], [data-scene="contact"]) .experience-copy {
+    bottom: max(80px, 10svh);
+    left: 24px;
+    right: 24px;
+    top: auto;
+    width: auto;
+    max-width: none;
+    text-align: left;
+  }
+  .experience-shell[data-motion="full"] .experience-scene:is([data-scene="web"], [data-scene="games"], [data-scene="labs"], [data-scene="contact"]) .experience-copy {
+    transform: translate3d(0, var(--mobile-copy-shift), 0);
+  }
+  .experience-shell .experience-scene:is([data-scene="games"], [data-scene="labs"], [data-scene="contact"]) h2 {
+    font-size: clamp(30px, 9.5vw, 44px);
+    letter-spacing: -.045em;
+    line-height: 1.04;
+    max-width: none;
+  }
+  .experience-shell .experience-scene:is([data-scene="web"], [data-scene="games"], [data-scene="labs"], [data-scene="contact"]) .experience-body {
+    font-size: clamp(16px, 4.3vw, 19px);
+    line-height: 1.4;
+    margin-top: 14px;
+  }
+  .experience-shell .experience-scene:is([data-scene="games"], [data-scene="labs"], [data-scene="contact"]) .experience-eyebrow { margin-bottom: 12px; }
+}
+@media (max-width: 699px) and (max-height: 700px) {
+  .experience-shell[data-motion="full"] .experience-scene[data-scene="manifesto"] .experience-copy { top: calc(var(--manifest-y) - 8svh); }
+  .experience-folder,
+  .experience-shell[data-motion="full"] .experience-folder { width: min(68vw, 250px); }
+  .experience-folder-face { min-height: 78px; gap: 6px; }
+  .experience-folder-face strong { font-size: 25px; }
+  .folder-web,
+  .experience-shell[data-motion="full"] .folder-web { top: 28%; }
+  .folder-games,
+  .experience-shell[data-motion="full"] .folder-games { top: calc(28% + 109px); }
+  .folder-labs,
+  .experience-shell[data-motion="full"] .folder-labs { top: calc(28% + 218px); }
+}
