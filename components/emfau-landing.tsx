@@ -56,7 +56,7 @@ function buildSceneCopy(locale: Locale): SceneContent[] {
     {
       id: "intro",
       eyebrow: text.hero.kicker,
-      title: isGerman ? "Websites, Spiele und Werkzeuge." : "Websites, games and tools.",
+      title: isGerman ? "Websites, Spiele und digitale Werkzeuge." : "Websites, games and digital tools.",
       body: text.hero.intro,
       layout: "center",
     },
