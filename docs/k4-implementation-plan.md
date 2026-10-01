@@ -1,6 +1,6 @@
 # K4 — Konkreter Umsetzungsplan
 
-Stand: 30.09.2026. **K4.0-Prüfbasis erhoben; keine Effektimplementierung. K4.1 noch nicht begonnen.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md).
+Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 implementiert und lokal geprüft. Sichtbares Feld/Nachlauf ab K4.2 noch nicht begonnen.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md).
 
 ## Ziel und Grenzen
 
@@ -39,11 +39,11 @@ Nicht enthalten: neue Games-/Labs-/Fasermodelle, zusätzliche Weltübergänge, T
 
 ### K4.1 — Eingabe im richtigen Kugelraum
 
-- [ ] Neues testbares Modul `lib/particle-interaction.ts` für Feldzustand/Impulsparameter vorsehen; räumliche Anbindung im Canvas. Numerischer Zustand bleibt unabhängig von React.
-- [ ] Nach Anwendung der aktuellen Kamera-/Gruppenpose Weltmatrizen aktualisieren. Zeigerstrahl aus NDC berechnen, mit inverser Gruppenmatrix in den Kugelraum übertragen und mit der analytischen Hülle (Radius 1,45) schneiden.
-- [ ] Randbereich der äußeren Wolke ausdrücklich behandeln: begrenzten weichen Einfluss im Funkenhalo zulassen, bei weiter entferntem Zeiger keine neue Kraft erzeugen. Trefferkontinuität am Rand prüfen.
-- [ ] Zeigerbewegung aus dem tatsächlichen Bildschirm-Eingabekanal ableiten und unter derselben aktuellen Transformation in den lokalen Raum projizieren. Nicht einfach zwei Treffer verschiedener Szenenposen subtrahieren: Scrollen/Rotation darf bei ruhender Maus keine zusätzliche Mausgeschwindigkeit erzeugen.
-- [ ] Mauskanal, Scrollkanal und Eigenbewegung separat schaltbar machen, nur in der bestehenden lokalen Renderdiagnose. Kein zusätzlicher globaler Event-Listener oder zweiter Animationstakt.
+- [x] Neues testbares Modul `lib/particle-interaction.ts` für Feldzustand/Impulsparameter vorsehen; räumliche Anbindung im Canvas. Numerischer Zustand bleibt unabhängig von React. Eingabestatus und abgetastete Kanäle vorhanden; Impulsspeicher folgt K4.2.
+- [x] Nach Anwendung der aktuellen Kamera-/Gruppenpose Weltmatrizen aktualisieren. Zeigerstrahl aus NDC berechnen, mit inverser Gruppenmatrix in den Kugelraum übertragen und mit der analytischen Hülle (Radius 1,45) schneiden.
+- [x] Randbereich der äußeren Wolke ausdrücklich behandeln: begrenzten weichen Einfluss im Funkenhalo zulassen, bei weiter entferntem Zeiger keine neue Kraft erzeugen. Trefferkontinuität am Rand prüfen. Einfluss läuft kubisch bis Radius 2,16 auf null; naher Fehltreffer nutzt den nächsten Strahlpunkt, ohne Tiefensprung an der Tangente.
+- [x] Zeigerbewegung aus dem tatsächlichen Bildschirm-Eingabekanal ableiten und unter derselben aktuellen Transformation in den lokalen Raum projizieren. Nicht einfach zwei Treffer verschiedener Szenenposen subtrahieren: Scrollen/Rotation darf bei ruhender Maus keine zusätzliche Mausgeschwindigkeit erzeugen. Lokale Geschwindigkeit begrenzt auf 12 Einheiten/s; Wiedereintritt, Resize und Resume neu referenziert.
+- [x] Mauskanal, Scrollkanal und Eigenbewegung separat schaltbar machen, nur in der bestehenden lokalen Renderdiagnose. Kein zusätzlicher globaler Event-Listener oder zweiter Animationstakt. Optionaler Treffermarker nur lokal; bestehende Sinus-Eigenbewegung separat abschaltbar, neue Strömung erst K4.2.
 
 **Prüfung:** Translation, Skalierung, Rotation, Kamerawechsel und unterschiedliche DPR; ruhende Maus bei scrollender Kugel; Wiederbetreten ohne Eingangsspitze. Treffer und Feldzentrum optional lokal visualisieren, nie öffentlich als Gestaltungselement.
 

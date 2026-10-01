@@ -123,7 +123,9 @@ export function EmfauLanding({ locale }: Props) {
   const frameRef = useRef(initialExperienceFrame());
   const drawRef = useRef<ExperienceDraw | null>(null);
   const pointerRef = useRef<ExperiencePointer>({ x: 0, y: 0, active: false });
-  const renderOptionsRef = useRef<RenderOptions>({ view: "composite", freeze: false, loseContext: false });
+  const pointerViewportRef = useRef({ width: 0, height: 0 });
+  const renderOptionsRef = useRef<RenderOptions>({ view: "composite", freeze: false, loseContext: false,
+    particleMouse: true, particleScroll: true, particleFlow: true, particleDiagnostics: false, particleHitDebug: false });
   const debugEnabled = useSyncExternalStore(subscribeDebugLocation, readDebugLocation, serverDebugLocation);
   const [debugReduced, setDebugReduced] = useState(false);
   const [debugUnits, setDebugUnits] = useState("5.25");
@@ -141,6 +143,13 @@ export function EmfauLanding({ locale }: Props) {
   const activeScene = sceneCopy[activeSceneIndex];
   const text = copy[locale];
   const motionReduced = reducedMotion || debugReduced;
+  useEffect(() => {
+    renderOptionsRef.current.particleDiagnostics = debugEnabled;
+    if (!debugEnabled) {
+      renderOptionsRef.current.particleHitDebug = false;
+      renderOptionsRef.current.particleMouse = renderOptionsRef.current.particleScroll = renderOptionsRef.current.particleFlow = true;
+    }
+  }, [debugEnabled]);
 
   const reportLoad = useCallback((part: "canvas" | "font" | "brand", value: number) => {
     loadRef.current[part] = Math.max(loadRef.current[part], value);
@@ -214,10 +223,18 @@ export function EmfauLanding({ locale }: Props) {
   }, [locale]);
 
   useEffect(() => {
+    if (menuOpen) pointerRef.current = { x: 0, y: 0, active: false };
     const move = (event: PointerEvent) => {
-      if (event.pointerType === "touch" || menuOpen) return;
-      const bounds = rootRef.current?.getBoundingClientRect();
-      if (bounds) pointerRef.current = pointerInViewport(event.clientX - bounds.left, event.clientY - bounds.top, bounds.width, bounds.height);
+      if (event.pointerType === "touch" || menuOpen || (event.target instanceof Element && event.target.closest(".experience-debug"))) {
+        pointerRef.current = { x: 0, y: 0, active: false };
+        return;
+      }
+      const root = rootRef.current;
+      const bounds = root?.getBoundingClientRect();
+      if (root && bounds) {
+        pointerRef.current = pointerInViewport(event.clientX - bounds.left, event.clientY - bounds.top, bounds.width, bounds.height);
+        pointerViewportRef.current = { width: root.clientWidth, height: root.clientHeight };
+      }
     };
     const leave = () => { pointerRef.current = { x: 0, y: 0, active: false }; };
     const onVisibility = () => {
@@ -252,6 +269,11 @@ export function EmfauLanding({ locale }: Props) {
 
       if (Math.abs(target - progressRef.current) < 0.0001) {
         progressRef.current = target;
+      }
+      // Old NDC coordinates belong to the old CSS viewport. Invalidate them
+      // until a real pointer event supplies a fresh reference after resize.
+      if (root && (root.clientWidth !== pointerViewportRef.current.width || root.clientHeight !== pointerViewportRef.current.height)) {
+        pointerRef.current = { x: 0, y: 0, active: false };
       }
       const frame = sampleExperienceFrame(frameRef.current, progressRef.current, pointerRef.current,
         intervalMs, motionReduced, SCROLL_UNITS, renderOptionsRef.current.freeze);
@@ -418,7 +440,7 @@ export function EmfauLanding({ locale }: Props) {
       <ExperienceCanvas drawRef={drawRef} optionsRef={renderOptionsRef} revealed={loadPhase === "ready"} fallback={fallback} onLoad={onCanvasLoad} />
       {loadPhase !== "ready" ? <ExperienceLoader progress={loadProgress} leaving={loadPhase === "leaving"} fallback={fallback} locale={locale} /> : null}
       <div className="experience-interface" inert={loadPhase !== "ready"}>
-      {debugEnabled ? <aside className="experience-debug" aria-label="Renderprüfung K2/K3">
+      {debugEnabled ? <aside className="experience-debug" aria-label="Renderprüfung K2/K3/K4">
         <label>Weltbild <select defaultValue="composite" onChange={event => { renderOptionsRef.current.view = event.target.value as RenderView; }}>
           <option value="composite">Liquid-Komposition</option><option value="neutral">Ohne Verzerrung</option><option value="warm">A · Warm</option><option value="cold">B · Kalt</option>
           <option value="direct-warm">A · Direkt (Farbvergleich)</option><option value="direct-cold">B · Direkt (Farbvergleich)</option>
@@ -427,6 +449,10 @@ export function EmfauLanding({ locale }: Props) {
         <button type="button" onClick={() => { targetProgressRef.current = Math.max(0, Math.min(1, Number(debugUnits) / SCROLL_UNITS)); }}>Position setzen</button>
         <label><input type="checkbox" onChange={event => { renderOptionsRef.current.freeze = event.target.checked; }} /> Eigenbewegung einfrieren</label>
         <label><input type="checkbox" checked={debugReduced} onChange={event => setDebugReduced(event.target.checked)} /> Reduzierte Bewegung prüfen</label>
+        <label><input type="checkbox" defaultChecked onChange={event => { renderOptionsRef.current.particleMouse = event.target.checked; }} /> Mauskanal Partikel</label>
+        <label><input type="checkbox" defaultChecked onChange={event => { renderOptionsRef.current.particleScroll = event.target.checked; }} /> Scrollkanal Partikel</label>
+        <label><input type="checkbox" defaultChecked onChange={event => { renderOptionsRef.current.particleFlow = event.target.checked; }} /> Eigenströmung Partikel</label>
+        <label><input type="checkbox" onChange={event => { renderOptionsRef.current.particleHitDebug = event.target.checked; }} /> Kugeltreffer anzeigen</label>
         <button type="button" onClick={() => { renderOptionsRef.current.loseContext = true; }}>WebGL-Ausfall prüfen</button>
       </aside> : null}
       <a className="skip-link" href="#experience-content">

@@ -28,11 +28,12 @@ export const particleVertexShader = /* glsl */ `
   uniform float uTime;
   uniform float uPixelRatio;
   uniform float uOutside;
+  uniform float uFlowEnabled;
   varying float vSeed;
   varying float vDepth;
   void main() {
     vec3 p = position;
-    float motion = uOutside * 0.018 + (1.0 - uOutside) * 0.012;
+    float motion = (uOutside * 0.018 + (1.0 - uOutside) * 0.012) * uFlowEnabled;
     p += vec3(sin(p.y * 5.0 + uTime * 0.5), cos(p.x * 4.0 + uTime * 0.4), sin(p.z * 5.0 + uTime * 0.3)) * motion;
     vec4 viewPosition = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * viewPosition;

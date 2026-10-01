@@ -8,6 +8,7 @@ import { contourVertexShader, contourFragmentShader } from "@/lib/opening-shader
 import { createIntroParticles, particleVertexShader, particleFragmentShader, shellVertexShader, shellFragmentShader } from "@/lib/intro-particles";
 import { createResourceScope, renderDimensions, type ExperienceDraw, type RenderOptions } from "@/lib/experience-input";
 import { createWorldRenderer } from "@/lib/world-renderer";
+import { createParticleInteractionState, sampleParticleInteraction } from "@/lib/particle-interaction";
 
 type Props = {
   drawRef: RefObject<ExperienceDraw | null>;
@@ -78,7 +79,8 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
           vertexShader: particleVertexShader, fragmentShader: particleFragmentShader,
           transparent: true, depthWrite: false, depthTest: false,
           blending: outside ? THREE.AdditiveBlending : THREE.NormalBlending,
-          uniforms: { uTime: { value: 0 }, uPixelRatio: { value: 1 }, uOutside: { value: outside ? 1 : 0 }, uOpacity: { value: 1 } },
+          uniforms: { uTime: { value: 0 }, uPixelRatio: { value: 1 }, uOutside: { value: outside ? 1 : 0 },
+            uOpacity: { value: 1 }, uFlowEnabled: { value: 1 } },
         });
         resources.add(() => cloudMaterial.dispose());
         const cloud = new THREE.Points(cloudGeometry, cloudMaterial);
@@ -88,6 +90,17 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
       };
       const inside = makeCloud(false);
       const outside = makeCloud(true);
+      const interactionState = createParticleInteractionState();
+      const inverseParticleWorld = new THREE.Matrix4();
+      const diagnosticPoint = new THREE.Vector3();
+      const markerGeometry = new THREE.SphereGeometry(.038, 12, 8);
+      const markerMaterial = new THREE.MeshBasicMaterial({ color: 0x00b7bd, depthTest: false, depthWrite: false });
+      resources.add(() => markerGeometry.dispose());
+      resources.add(() => markerMaterial.dispose());
+      const hitMarker = new THREE.Mesh(markerGeometry, markerMaterial);
+      hitMarker.visible = false;
+      hitMarker.renderOrder = 10;
+      group.add(hitMarker);
       const hemisphere = new THREE.HemisphereLight(0xffffff, 0xf3a36d, 2.2);
       const key = new THREE.DirectionalLight(0xffffff, 4.1);
       key.position.set(3.4, 4.2, 4.8);
@@ -141,7 +154,7 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
           const span = viewHeight * camera.aspect;
           group.position.set((opening.warm.x - .5) * span, (.5 - opening.warm.y) * viewHeight - (1 - entry) * .65, 0);
           group.scale.setScalar(opening.warm.diameter * span / 2.9);
-          const pointer = frame.reducedMotion || !frame.pointer.active ? { x: 0, y: 0 } : frame.pointer;
+          const pointer = frame.reducedMotion || !frame.pointer.active || !optionsRef.current.particleMouse ? { x: 0, y: 0 } : frame.pointer;
           group.rotation.set(lerp(from.rotation[0], to.rotation[0]) + pointer.y * .0225,
             lerp(from.rotation[1], to.rotation[1]) + pointer.x * .0275, lerp(from.rotation[2], to.rotation[2]));
           const coldPose = { x: (opening.cold.x - .5) * span, y: (.5 - opening.cold.y) * viewHeight, scale: opening.cold.diameter * span / 2.9 };
@@ -155,6 +168,22 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
           }
           coldGroup.rotation.set(.1, lerp(from.rotation[1], to.rotation[1]) + time * .025, -.15);
           const warm = warmSceneOpacity(progress);
+          // Projection must use the pose from this same shared frame, before
+          // rendering. The numeric sampler reprojects both screen positions
+          // under these matrices rather than subtracting hits of old poses.
+          camera.updateWorldMatrix(true, false);
+          group.updateWorldMatrix(true, false);
+          inverseParticleWorld.copy(group.matrixWorld).invert();
+          const interaction = sampleParticleInteraction(interactionState, frame, {
+            inverseProjection: camera.projectionMatrixInverse.elements,
+            cameraWorld: camera.matrixWorld.elements,
+            inverseWorld: inverseParticleWorld.elements,
+          }, { mouse: optionsRef.current.particleMouse, scroll: optionsRef.current.particleScroll,
+            flow: optionsRef.current.particleFlow, freeze: optionsRef.current.freeze,
+            visible: warm > 0 && revealedRef.current, width, height });
+          inside.material.uniforms.uFlowEnabled.value = outside.material.uniforms.uFlowEnabled.value = interaction.flowEnabled ? 1 : 0;
+          hitMarker.visible = optionsRef.current.particleDiagnostics && optionsRef.current.particleHitDebug && interaction.pointer.influence > 0;
+          hitMarker.position.fromArray(interaction.pointer.point);
           shellMaterial.uniforms.uOpacity.value = warm;
           inside.material.uniforms.uTime.value = outside.material.uniforms.uTime.value = time;
           inside.material.uniforms.uOpacity.value = outside.material.uniforms.uOpacity.value = warm;
@@ -183,6 +212,14 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
               frameMs: frameCount ? +(intervalTotal / frameCount).toFixed(2) : 0,
               maxFrameMs: +intervalMax.toFixed(2), cpuMs: frameCount ? +(cpuTotal / frameCount).toFixed(2) : 0,
               samples: frameCount, cssWidth: width, cssHeight: height });
+            if (optionsRef.current.particleDiagnostics) {
+              diagnosticPoint.fromArray(interaction.pointer.point).applyMatrix4(group.matrixWorld).project(camera);
+              canvas.dataset.particleInteraction = JSON.stringify({ ...interaction, frameId: frame.id,
+                pointerNdc: [frame.pointer.x, frame.pointer.y],
+                projectedNdc: interaction.pointer.influence > 0 ? [diagnosticPoint.x, diagnosticPoint.y] : null,
+                channels: { mouse: optionsRef.current.particleMouse, scroll: optionsRef.current.particleScroll,
+                  flow: optionsRef.current.particleFlow } });
+            } else delete canvas.dataset.particleInteraction;
             intervalTotal = intervalMax = cpuTotal = frameCount = 0;
             reportTime = performance.now();
           }

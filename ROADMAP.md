@@ -1,8 +1,8 @@
 # emfau — Roadmap zur interaktiven Landingpage
 
-Stand: 30.09.2026  
+Stand: 01.10.2026
 Projektordner: bestehender lokaler Checkout; Repo-Name und Deployment-Pfad vorerst unverändert.
-Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. K3.1 hat den Liquid-Übergang in einer ersten Browser-Vergleichsrunde sichtbar nachgearbeitet, ist aber nicht visuell gleichwertig abgenommen. M0 (mobile Scroll-/Layoutoptimierung) ist als eigener Zwischenstand veröffentlicht. K4.0-Prüfbasis ist erhoben; K4.1 und der Effektcode wurden noch nicht begonnen.** Exakte Liquid-/Lichtabstimmung mit dem finalen Web-Modell, lokale Partikelinteraktion und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind insgesamt noch nicht abgeschlossen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
+Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. K3.1 hat den Liquid-Übergang in einer ersten Browser-Vergleichsrunde sichtbar nachgearbeitet, ist aber nicht visuell gleichwertig abgenommen. M0 (mobile Scroll-/Layoutoptimierung) ist als eigener Zwischenstand veröffentlicht. K4.0-Prüfbasis ist erhoben; K4.1 ist implementiert und lokal geprüft: kugellokale Treffer und getrennte Eingabekanäle.** Sichtbares Partikelfeld und Nachlauf beginnen erst mit K4.2. Exakte Liquid-/Lichtabstimmung mit dem finalen Web-Modell und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind insgesamt noch nicht abgeschlossen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
 
 ## Verbindliche Arbeitsreihenfolge
 
@@ -347,13 +347,13 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 ## Korrekturblock K4 — Interaktive Partikel und Intro-Material
 
-**Status:** K4.0-Prüfbasis erhoben — genaue Referenzkraftmessung und Effektimplementierung offen; K4.1 noch nicht begonnen
+**Status:** K4.0-Prüfbasis erhoben; K4.1 implementiert und lokal geprüft — genaue Referenzkraftmessung, sichtbares Feld/Nachlauf ab K4.2 und visuelle Nutzerabnahme offen
 **Abhängigkeiten:** K2 und K3
 
-**Konkreter Arbeitsplan:** [K4-Umsetzungsplan](docs/k4-implementation-plan.md). [K4.0-Prüfprotokoll](docs/k4-0-baseline.md) mit eigenen Belegen und Diagnosewerten ergänzt; Website-Code unverändert. Umsetzung in dieser Reihenfolge:
+**Konkreter Arbeitsplan:** [K4-Umsetzungsplan](docs/k4-implementation-plan.md). [K4.0-Prüfprotokoll](docs/k4-0-baseline.md) und [K4.1-Verifikation](docs/k4-1-verification.md) mit tatsächlichen Prüfungen und Grenzen. Umsetzung in dieser Reihenfolge:
 
 - [x] K4.0 — Bewegungs-Prüfprotokoll und Ist-Baseline festhalten; beobachtete Wirkung von Annahmen trennen (Desktop/Mobile, sechs Positionen, Live-Stichproben, Mengen und Laufzeitdaten). Genaue zusätzliche Maus-/Scrollkraftmessung bleibt im Arbeitsplan ausdrücklich offen.
-- [ ] K4.1 — Kugellokale Eingabe und getrennte Maus-/Scrollkanäle implementieren und bei Transformationen prüfen.
+- [x] K4.1 — Kugellokale Eingabe und getrennte Maus-/Scrollkanäle implementieren und bei Transformationen prüfen; 33 Tests, TypeScript, Lint, Pages-Build und lokale Desktop-/Mobile-Trefferprüfung bestanden. Kein sichtbares Feld vorweggenommen.
 - [ ] K4.2 — Begrenztes Strömungsfeld, gerichtete Impulse, Nachlauf und Rückkehr zur Ruheverteilung implementieren.
 - [ ] K4.3 — Feldvariante anhand von Bewegungsbelegen bewerten; GPU-Partikelzustand nur bei dokumentiertem Bedarf ergänzen.
 - [ ] K4.4 — Innen-/Außencharakter, Blickraumtiefe, Transparenz und Hüllenlicht abstimmen.
@@ -363,7 +363,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 Die folgenden ursprünglichen K4-Anforderungen bleiben als übergreifende Abschlusscheckliste bestehen:
 
 - [ ] Maus- und Scrollreaktion bei jeweils festgehaltenem anderen Eingang separat prüfen; Einflussbereich, Richtung, Stärke und Nachlauf dokumentieren.
-- [ ] Mausposition in den Raum der transformierten Kugel umrechnen, sodass die lokale Reaktion auch nach Verschieben, Skalieren und Rotieren am richtigen Ort liegt.
+- [x] Mausposition in den Raum der transformierten Kugel umrechnen, sodass die lokale Reaktion auch nach Verschieben, Skalieren und Rotieren am richtigen Ort liegt (Zuordnung K4.1 geprüft; sichtbare Reaktion K4.2 noch offen).
 - [ ] Begrenztes Einflussfeld mit gerichteten Impulsen, Strömung/Wirbeln, Dämpfung und Rückkehr zur Grundverteilung aufbauen; globale Kugelrotation ist kein Ersatz.
 - [ ] Zunächst ein gemeinsames Strömungsfeld auf die Partikel anwenden und visuell vergleichen; bei erforderlichen eigenständigen Bahnen Position/Geschwindigkeit auf der GPU fortschreiben. Die Entscheidung mit Bild- und Laufzeitbelegen festhalten.
 - [ ] Innenpartikel und äußere Funken mit eigener Verteilung, Dichte, Geschwindigkeit, Größe und Helligkeit abstimmen; zusammenhängende Bewegung statt gleichmäßigen Zitterns.
@@ -568,3 +568,4 @@ Historische Einträge beschreiben den damaligen Stand; für Reihenfolge und Abna
 - **30.09.2026:** K4-Umsetzungsplan anhand des aktuellen Codes in sieben aufeinanderfolgende Teilpakete konkretisiert: Prüfbasis, lokale Eingabe, Feld/Nachlauf, GPU-Entscheidung, Material/Tiefe, Lebenszyklus und Abnahme. Plan unter `docs/k4-implementation-plan.md`; K4 bleibt bis zu einem neuen Go unbegonnen. Keine Änderungen am Website-Code und kein Commit/Push durch diese Planungsanfrage.
 - **30.09.2026:** K4.0 nach reparierter interner Browseranbindung fortgesetzt: Archivlücken geprüft, Live-Stichproben separat privat gesichert, eigene Desktop-/Mobile-Baseline an sechs Positionen und frische Renderdiagnose erfasst. 25 Tests bestanden; Website-Code unverändert. Eigenströmung qualitativ belegt, zusätzliche Referenzkräfte/Nachlauf noch nicht sauber vermessen. Ergebnisse unter `docs/k4-0-baseline.md`; K4.1 und Commit/Push nicht begonnen.
 - **30.09.2026:** K3.1 als verbindlichen Liquid-Finishing-Schritt ergänzt und eine erste Shader-Nacharbeit durchgeführt: breitere verschachtelte Brechung, lokale Kaustik-/Lichtspitzen und begrenzte Farbabstimmung. Desktop/Mobile im Browser verglichen, eigene Belege unter `docs/screenshots/k3-1/`, externe Bilder ausschließlich im privaten Archiv. 25 Tests, TypeScript, Lint und Pages-Build bestanden. Ergebnis ausdrücklich nicht als optisch gleichwertig markiert; finale Material- und Bewegungsabnahme bleiben Bulk 8/G1. Kein Commit/Push.
+- **01.10.2026:** K4.1 umgesetzt: analytischer Hüllentreffer im aktuellen Kugelraum, kontinuierlicher weicher Halo, Zeigerbewegung mit gemeinsamer aktueller Transformation und getrennte Maus-/Scroll-/Eigenströmungskanäle. Lokaler Treffermarker und Diagnosewerte ergänzt, keine zweite Frame-Schleife. 33 Tests, TypeScript, Lint und Pages-Build bestanden; Treffer bei 1281 × 721 und 391 × 844 sowie ruhender Zeiger beim Scrollen lokal geprüft. React-Prüfung: numerischer Zustand außerhalb React, bestehende Listener/Frame-Basis und dynamischer Three-Import erhalten. Kein neues Partikelfeld, keine Änderungen an Texten, Links oder Scrollstrecke. K4.2 nicht begonnen; kein Commit/Push.

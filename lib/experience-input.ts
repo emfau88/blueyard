@@ -16,7 +16,11 @@ export type ExperienceFrame = {
 };
 export type ExperienceDraw = (frame: ExperienceFrame) => void;
 export type RenderView = "composite" | "neutral" | "warm" | "cold" | "direct-warm" | "direct-cold";
-export type RenderOptions = { view: RenderView; freeze: boolean; loseContext: boolean };
+export type RenderOptions = {
+  view: RenderView; freeze: boolean; loseContext: boolean;
+  particleMouse: boolean; particleScroll: boolean; particleFlow: boolean;
+  particleDiagnostics: boolean; particleHitDebug: boolean;
+};
 
 export function initialExperienceFrame(progress = 0): ExperienceFrame {
   return { id: 0, progress, scrollUnits: progress * 19, scrollVelocity: 0,
