@@ -1,6 +1,6 @@
 # M1 — 25 % weniger Scroll-Eingabeweg
 
-Stand: 01.10.2026. Separater Zusatzauftrag während K4.2, implementiert und lokal geprüft. Noch nicht committed/gepusht. Texte, Links, Modelle, Szenen und Effekte nicht entfernt oder umgestaltet.
+Stand: 01.10.2026. Separater Zusatzauftrag während K4.2, implementiert und lokal geprüft; zusammen mit K4.2 als `0ee100b` committed und auf `main` gepusht. Texte, Links, Modelle, Szenen und Effekte nicht entfernt oder umgestaltet.
 
 ## Änderung
 

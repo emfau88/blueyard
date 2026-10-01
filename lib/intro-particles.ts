@@ -27,6 +27,9 @@ export function createIntroParticles(count: number, outside: boolean) {
 export const particleVertexShader = /* glsl */ `
   attribute float aSize;
   attribute float aSeed;
+  attribute vec2 aSimulationUV;
+  uniform sampler2D uParticlePosition;
+  uniform bool uUseSimulation;
   uniform float uTime;
   uniform float uPixelRatio;
   uniform float uOutside;
@@ -35,7 +38,7 @@ export const particleVertexShader = /* glsl */ `
   varying float vDepth;
   ${particleFieldShader}
   void main() {
-    vec3 p = particleField(position);
+    vec3 p = uUseSimulation ? texture2D(uParticlePosition, aSimulationUV).xyz : particleField(position);
     vec4 viewPosition = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * viewPosition;
     gl_PointSize = aSize * uPixelRatio * clamp(5.8 / -viewPosition.z, 0.65, 2.0);

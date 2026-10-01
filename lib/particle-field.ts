@@ -5,8 +5,8 @@ export type FieldVector = [number, number, number];
 export const PARTICLE_FIELD = {
   slots: 4, decay: 2.4, gain: .9, impulseLimit: .24,
   trailInterval: .14, trailDistance: .24,
-  inside: { radius: 1.12, weight: .95, delay: .025, flow: .025, scroll: .14, displacement: .28, minRadius: 0, maxRadius: 1.38 },
-  outside: { radius: .94, weight: 1.25, delay: .075, flow: .045, scroll: .22, displacement: .38, minRadius: 1.46, maxRadius: 2.16 },
+  inside: { radius: 1.12, weight: .95, delay: .025, flow: .055, cohesion: .85, concentration: 4, scroll: .14, displacement: .28, minRadius: 0, maxRadius: 1.38 },
+  outside: { radius: .94, weight: 1.25, delay: .075, flow: .075, cohesion: .45, concentration: 2, scroll: .22, displacement: .38, minRadius: 1.46, maxRadius: 2.16 },
 } as const;
 export type ParticleImpulse = { center: FieldVector; vector: FieldVector; age: number };
 export type ParticleFieldState = {
@@ -22,6 +22,27 @@ const dot = (a: FieldVector, b: FieldVector) => a[0] * b[0] + a[1] * b[1] + a[2]
 const unit = (p: FieldVector) => scale(p, 1 / Math.max(magnitude(p), 1e-8));
 const cap = (p: FieldVector, limit: number) => scale(p, Math.min(1, limit / Math.max(magnitude(p), 1e-8)));
 const blankImpulse = (): ParticleImpulse => ({ center: [0, 0, 0], vector: [0, 0, 0], age: 0 });
+
+/** Analytic density transport, not independent particle trajectories. Moving
+ * compact lobes compress local volume while coherent curl carries the pattern.
+ * The fallback evaluates rest coordinates; the GPU branch samples the same
+ * force at its current position. Both use the shared effect clock. */
+export function sampleParticleFlow(rest: FieldVector, time: number, outside: boolean): FieldVector {
+  const profile = outside ? PARTICLE_FIELD.outside : PARTICLE_FIELD.inside;
+  let flow = scale(cap(cross(rest, [Math.sin(rest[2] * 2 + time * .33),
+    Math.cos(rest[0] * 1.8 - time * .27), Math.sin(rest[1] * 2.2 + time * .23)]), 1), profile.flow);
+  for (let i = 0; i < 2; i++) {
+    const phase = time * .38 + i * 2.4;
+    let center: FieldVector = [.6 * Math.cos(phase), .45 * Math.sin(phase * .73 + i), .5 * Math.sin(phase)];
+    if (outside) center = scale(unit(center), 1.78);
+    const offset = subtract(rest, center);
+    const weight = Math.exp(-dot(offset, offset) * profile.concentration) * (.72 + .28 * Math.sin(phase * .91 + i));
+    const axis = unit([Math.sin(phase), .7, Math.cos(phase * .63)]);
+    const compression = -profile.cohesion * Math.sin(phase * .91 + i);
+    flow = add(flow, scale(add(scale(cross(axis, offset), .65), scale(offset, compression)), weight));
+  }
+  return flow;
+}
 export function createParticleFieldState(): ParticleFieldState {
   return { impulses: Array.from({ length: PARTICLE_FIELD.slots }, blankImpulse), latest: -1, scroll: 0, frameId: 0, width: 0, height: 0 };
 }
@@ -69,8 +90,7 @@ export function sampleParticleField(rest: FieldVector, state: ParticleFieldState
   outside: boolean, flowEnabled: boolean): FieldVector {
   const profile = outside ? PARTICLE_FIELD.outside : PARTICLE_FIELD.inside;
   let displacement: FieldVector = [0, 0, 0];
-  if (flowEnabled) displacement = scale(cap(cross(rest, [Math.sin(rest[2] * 2 + time * .33),
-    Math.cos(rest[0] * 1.8 - time * .27), Math.sin(rest[1] * 2.2 + time * .23)]), 1), profile.flow);
+  if (flowEnabled) displacement = sampleParticleFlow(rest, time, outside);
   displacement = add(displacement, scale(cap(cross(unit([.35, .8, .2]), rest), 1),
     state.scroll * profile.scroll * (.75 + .25 * Math.cos(rest[1] * 2))));
   for (const impulse of state.impulses) {
@@ -109,9 +129,23 @@ export const particleFieldShader = /* glsl */ `
   uniform float uScrollImpulse;
   vec3 fieldCap(vec3 v, float limit) { return v * min(1.0, limit / max(length(v), 0.00000001)); }
   vec3 fieldUnit(vec3 v) { return v / max(length(v), 0.00000001); }
+  vec3 particleEigenFlow(vec3 rest) {
+    vec3 flow = fieldCap(cross(rest, vec3(sin(rest.z * 2.0 + uTime * .33),
+      cos(rest.x * 1.8 - uTime * .27), sin(rest.y * 2.2 + uTime * .23))), 1.0) * ${glslProfile("flow")};
+    for (int i = 0; i < 2; i++) {
+      float phase = uTime * .38 + float(i) * 2.4;
+      vec3 center = vec3(.6 * cos(phase), .45 * sin(phase * .73 + float(i)), .5 * sin(phase));
+      center = mix(center, fieldUnit(center) * 1.78, uOutside);
+      vec3 offset = rest - center;
+      float weight = exp(-dot(offset, offset) * ${glslProfile("concentration")}) * (.72 + .28 * sin(phase * .91 + float(i)));
+      vec3 axis = fieldUnit(vec3(sin(phase), .7, cos(phase * .63)));
+      float compression = -${glslProfile("cohesion")} * sin(phase * .91 + float(i));
+      flow += (cross(axis, offset) * .65 + offset * compression) * weight;
+    }
+    return flow;
+  }
   vec3 particleField(vec3 rest) {
-    vec3 displacement = fieldCap(cross(rest, vec3(sin(rest.z * 2.0 + uTime * .33),
-      cos(rest.x * 1.8 - uTime * .27), sin(rest.y * 2.2 + uTime * .23))), 1.0) * ${glslProfile("flow")} * uFlowEnabled;
+    vec3 displacement = particleEigenFlow(rest) * uFlowEnabled;
     displacement += fieldCap(cross(fieldUnit(vec3(.35, .8, .2)), rest), 1.0) * uScrollImpulse * ${glslProfile("scroll")} * (.75 + .25 * cos(rest.y * 2.0));
     float radius = ${glslProfile("radius")};
     for (int i = 0; i < ${PARTICLE_FIELD.slots}; i++) {

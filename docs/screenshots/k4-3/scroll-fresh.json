@@ -1,0 +1,212 @@
+{
+  "forward": {
+    "input": {
+      "delta": 0.011199999999953436,
+      "id": 30793,
+      "intervalMs": 11.199999999953434,
+      "pointer": {
+        "active": true,
+        "velocityX": 0,
+        "velocityY": 0,
+        "x": 0.804523763632397,
+        "y": -0.33310044577715914
+      },
+      "progress": 0.07181286476482907,
+      "reducedMotion": false,
+      "scrollUnits": 1.3644444305317522,
+      "scrollVelocity": 0.001199621582101238,
+      "time": 269.4951000000346
+    },
+    "interaction": {
+      "channels": {
+        "flow": false,
+        "mouse": false,
+        "scroll": true
+      },
+      "field": {
+        "impulses": [
+          {
+            "age": 29.130600000000165,
+            "center": [
+              -0.2510249909433172,
+              -0.20306451678192303,
+              1.4135951527739596
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "age": 29.130600000000165,
+            "center": [
+              -0.01337505184048582,
+              -0.11262027085518804,
+              1.4455579485377856
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "age": 29.130600000000165,
+            "center": [
+              0,
+              0,
+              0
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "age": 29.130600000000165,
+            "center": [
+              0,
+              0,
+              0
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "scroll": 0.014591166062605153
+      },
+      "flowEnabled": false,
+      "frameId": 30790,
+      "pointer": {
+        "influence": 0,
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "region": "none",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      "pointerNdc": [
+        0.804523763632397,
+        -0.33310044577715914
+      ],
+      "projectedNdc": null,
+      "scrollVelocity": 0.001819702134767528
+    }
+  },
+  "reverse": {
+    "input": {
+      "delta": 0.011399999999965075,
+      "id": 30895,
+      "intervalMs": 11.399999999965075,
+      "pointer": {
+        "active": true,
+        "velocityX": 0,
+        "velocityY": 0,
+        "x": 0.804523763632397,
+        "y": -0.33310044577715914
+      },
+      "progress": 0.05263157894736842,
+      "reducedMotion": false,
+      "scrollUnits": 1,
+      "scrollVelocity": -0.00013142254368604084,
+      "time": 271.0037000000356
+    },
+    "interaction": {
+      "channels": {
+        "flow": false,
+        "mouse": false,
+        "scroll": true
+      },
+      "field": {
+        "impulses": [
+          {
+            "age": 30.19430000000019,
+            "center": [
+              -0.2510249909433172,
+              -0.20306451678192303,
+              1.4135951527739596
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "age": 30.19430000000019,
+            "center": [
+              -0.01337505184048582,
+              -0.11262027085518804,
+              1.4455579485377856
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "age": 30.19430000000019,
+            "center": [
+              0,
+              0,
+              0
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "age": 30.19430000000019,
+            "center": [
+              0,
+              0,
+              0
+            ],
+            "vector": [
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "scroll": -0.02363951385360363
+      },
+      "flowEnabled": false,
+      "frameId": 30866,
+      "pointer": {
+        "influence": 0,
+        "point": [
+          0,
+          0,
+          0
+        ],
+        "region": "none",
+        "velocity": [
+          0,
+          0,
+          0
+        ]
+      },
+      "pointerNdc": [
+        0.804523763632397,
+        -0.33310044577715914
+      ],
+      "projectedNdc": null,
+      "scrollVelocity": -0.008124051998996129
+    }
+  }
+}

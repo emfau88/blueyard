@@ -19,6 +19,7 @@ export type RenderView = "composite" | "neutral" | "warm" | "cold" | "direct-war
 export type RenderOptions = {
   view: RenderView; freeze: boolean; loseContext: boolean;
   particleMouse: boolean; particleScroll: boolean; particleFlow: boolean;
+  particleModel: "auto" | "field";
   particleDiagnostics: boolean; particleHitDebug: boolean;
 };
 

@@ -1,0 +1,46 @@
+{
+  "input": {
+    "delta": 0.013799999999995635,
+    "id": 4426,
+    "intervalMs": 13.799999999995634,
+    "pointer": {
+      "active": false,
+      "velocityX": 0,
+      "velocityY": 0,
+      "x": 0,
+      "y": 0
+    },
+    "progress": 0.34210526315789475,
+    "reducedMotion": false,
+    "scrollUnits": 6.5,
+    "scrollVelocity": 0.011697008191181808,
+    "time": 55.40020000000115
+  },
+  "stats": {
+    "calls": 3,
+    "cpuMs": 0.37,
+    "cssHeight": 900,
+    "cssWidth": 1441,
+    "fieldCpuMs": 0.061,
+    "format": "rgba16f-linear",
+    "frameMs": 15.04,
+    "geometries": 5,
+    "height": 900,
+    "liquidDetail": 1,
+    "liquidStrength": 0,
+    "maxFrameMs": 49.7,
+    "particleMode": "gpu",
+    "passes": 2,
+    "samples": 36,
+    "simulationBytes": 3104720,
+    "simulationCpuMs": 0.011,
+    "simulationPasses": 0,
+    "simulationReason": "float-mrt",
+    "simulationSteps": 0,
+    "textures": 7,
+    "totalCalls": 3,
+    "totalPasses": 2,
+    "view": "composite",
+    "width": 1441
+  }
+}

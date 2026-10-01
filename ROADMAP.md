@@ -2,7 +2,7 @@
 
 Stand: 01.10.2026
 Projektordner: bestehender lokaler Checkout; Repo-Name und Deployment-Pfad vorerst unverändert.
-Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. K3.1 ist sichtbar nachgearbeitet, aber nicht visuell gleichwertig abgenommen. M0 ist veröffentlicht; M1 verkürzt den aktuellen Desktop-/Mobile-Eingabeweg zusätzlich um 25 %. K4.1 ist als `f9d5459` committed (nicht gepusht). K4.2 ist implementiert und lokal geprüft: begrenztes Partikelfeld, lokale Impulse und gedämpfter Nachlauf.** Nächster K4-Schritt ist K4.3 (begründete Feld-/GPU-Entscheidung). M1 und K4.2 sind noch nicht committed/veröffentlicht. Exakte Liquid-/Lichtabstimmung mit dem finalen Web-Modell und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind insgesamt noch nicht abgeschlossen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
+Aktueller Arbeitsstand: **K1 liefert das Scroll-/Layoutgerüst; K2 und K3 sind implementiert und lokal geprüft. K3.1 ist sichtbar nachgearbeitet, aber nicht visuell gleichwertig abgenommen. M0 ist veröffentlicht; K4.1 und K4.2/M1 sind bis `0ee100b` committed und auf `main` gepusht. M1 verkürzt den Desktop-/Mobile-Eingabeweg zusätzlich um 25 %. K4.3 ergänzt nach Feldvergleich einen GPU-Zustand für Position/Geschwindigkeit mit Feld-Fallback; implementiert und lokal auf Desktop sowie als mobile GPU-Basis bei 391 × 844 geprüft. Abschlusscommit/Push vom Nutzer freigegeben.** Nächster Umsetzungsschritt ist K4.4 (Charakter, Tiefe und Licht). Kalibrierte Referenzkräfte, vollständige Geräte-/Lifecycle-Prüfung und Nutzerabnahme bleiben offen. Exakte Liquid-/Lichtabstimmung mit dem finalen Web-Modell und eigenständige Weltmodelle bleiben offen. K4 und Bulks 8–14 sind insgesamt noch nicht abgeschlossen. Technische Checks und passende Einzelbilder ersetzen keine visuelle Nutzerabnahme. Die spätere Individualisierung bleibt vorgesehen.
 
 ## Verbindliche Arbeitsreihenfolge
 
@@ -347,7 +347,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 ## M1 — Scrollweg Desktop und Mobile zusätzlich verkürzen
 
-**Status:** Implementiert und lokal geprüft — nicht committed/gepusht; subjektive Nutzerabnahme offen
+**Status:** Implementiert und lokal geprüft; als Teil von `0ee100b` committed und gepusht; subjektive Nutzerabnahme offen
 **Abhängigkeiten:** M0; Zusatzauftrag während K4.2
 
 - [x] Desktop-Eingabeweg um 25 % verkürzen: 19 → 14,25 Viewporthöhen.
@@ -361,7 +361,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 
 ## Korrekturblock K4 — Interaktive Partikel und Intro-Material
 
-**Status:** K4.0-Prüfbasis erhoben; K4.1 committed; K4.2 implementiert und lokal geprüft — K4.3–K4.6, genaue Referenzkraftmessung und visuelle Nutzerabnahme offen
+**Status:** K4.0-Prüfbasis erhoben; K4.1 und K4.2/M1 committed/gepusht; K4.3 implementiert und lokal geprüft, Abschlusscommit/Push freigegeben — K4.4–K4.6, genaue Referenzkraftmessung und visuelle Nutzerabnahme offen
 **Abhängigkeiten:** K2 und K3
 
 **Konkreter Arbeitsplan:** [K4-Umsetzungsplan](docs/k4-implementation-plan.md). [K4.0-Prüfprotokoll](docs/k4-0-baseline.md), [K4.1-Verifikation](docs/k4-1-verification.md) und [K4.2-Verifikation](docs/k4-2-verification.md) mit tatsächlichen Prüfungen und Grenzen. Umsetzung in dieser Reihenfolge:
@@ -369,7 +369,7 @@ Das Entfernen ungenutzter alter Komponenten und Styles bleibt Teil von Bulk 12.
 - [x] K4.0 — Bewegungs-Prüfprotokoll und Ist-Baseline festhalten; beobachtete Wirkung von Annahmen trennen (Desktop/Mobile, sechs Positionen, Live-Stichproben, Mengen und Laufzeitdaten). Genaue zusätzliche Maus-/Scrollkraftmessung bleibt im Arbeitsplan ausdrücklich offen.
 - [x] K4.1 — Kugellokale Eingabe und getrennte Maus-/Scrollkanäle implementieren und bei Transformationen prüfen; 33 Tests, TypeScript, Lint, Pages-Build und lokale Desktop-/Mobile-Trefferprüfung bestanden. Kein sichtbares Feld vorweggenommen.
 - [x] K4.2 — Begrenztes Vertex-Strömungsfeld mit vier lokalen Impulszentren, separatem Scrollkanal, Nachlauf und Rückkehr implementiert. Desktop/Mobile, Freeze, Reduced Motion und Liquid lokal geprüft; neun neue Feldtests, zusammen mit M1 insgesamt 44 Tests bestanden. Keine Abnahme als referenzgleiches Bewegungsverhalten.
-- [ ] K4.3 — Feldvariante anhand von Bewegungsbelegen bewerten; GPU-Partikelzustand nur bei dokumentiertem Bedarf ergänzen.
+- [x] K4.3 — Feldvergleich und GPU-Entscheidung dokumentiert; Position/Geschwindigkeit in zwei Ping-Pong-MRTs fortschreiben. Gemeinsamer Frame, feste begrenzte Schritte, Rückstellkraft und Feld-Fallback. 54 Tests bestanden; Desktop-Freeze, Rückkehr, Maus-only, Scroll-only und Liquid geprüft. [Entscheidung, Belege und Grenzen](docs/k4-3-verification.md). Keine Abnahme als identische Referenzphysik; Geräteprüfung bleibt K4.5.
 - [ ] K4.4 — Innen-/Außencharakter, Blickraumtiefe, Transparenz und Hüllenlicht abstimmen.
 - [ ] K4.5 — Mobile, Touch, Freeze, Reduced Motion, Resume und Ressourcenverwaltung prüfen.
 - [ ] K4.6 — Regressionstests, Bild-/Bewegungsbelege und Laufzeitvergleich abschließen; technische Prüfung und Nutzerabnahme getrennt führen.
@@ -379,7 +379,7 @@ Die folgenden ursprünglichen K4-Anforderungen bleiben als übergreifende Abschl
 - [x] Maus- und Scrollreaktion bei jeweils festgehaltenem anderen Eingang separat prüfen; Einflussbereich, Richtung, Stärke und Nachlauf dokumentieren (lokale K4.2-Prüfung, nicht finale Vergleichsabnahme).
 - [x] Mausposition in den Raum der transformierten Kugel umrechnen, sodass die lokale Reaktion auch nach Verschieben, Skalieren und Rotieren am richtigen Ort liegt (Zuordnung K4.1; sichtbare Reaktion K4.2 lokal geprüft).
 - [x] Begrenztes Einflussfeld mit gerichteten Impulsen, Strömung/Wirbeln, Dämpfung und Rückkehr zur Grundverteilung aufbauen; globale Kugelrotation ist kein Ersatz.
-- [ ] Zunächst ein gemeinsames Strömungsfeld auf die Partikel anwenden und visuell vergleichen; bei erforderlichen eigenständigen Bahnen Position/Geschwindigkeit auf der GPU fortschreiben. Die Entscheidung mit Bild- und Laufzeitbelegen festhalten.
+- [x] Zunächst ein gemeinsames Strömungsfeld auf die Partikel anwenden und visuell vergleichen; bei erforderlichen eigenständigen Bahnen Position/Geschwindigkeit auf der GPU fortschreiben. Die Entscheidung mit Bild- und Laufzeitbelegen festhalten (K4.3; endgültige Referenzabstimmung offen).
 - [ ] Innenpartikel und äußere Funken mit eigener Verteilung, Dichte, Geschwindigkeit, Größe und Helligkeit abstimmen; zusammenhängende Bewegung statt gleichmäßigen Zitterns.
 - [x] Scrollimpulse mit begrenzter Stärke einkoppeln und weich ausklingen lassen; keine zusätzliche Verformung der runden Kugelgrundkontur (K4.2).
 - [ ] Tiefenwirkung, Durchscheinen, Hüllenrand und Licht abstimmen; Partikel nicht pauschal ohne Tiefenbezug über alle Ebenen zeichnen.
@@ -585,3 +585,4 @@ Historische Einträge beschreiben den damaligen Stand; für Reihenfolge und Abna
 - **01.10.2026:** K4.1 umgesetzt: analytischer Hüllentreffer im aktuellen Kugelraum, kontinuierlicher weicher Halo, Zeigerbewegung mit gemeinsamer aktueller Transformation und getrennte Maus-/Scroll-/Eigenströmungskanäle. Lokaler Treffermarker und Diagnosewerte ergänzt, keine zweite Frame-Schleife. 33 Tests, TypeScript, Lint und Pages-Build bestanden; Treffer bei 1281 × 721 und 391 × 844 sowie ruhender Zeiger beim Scrollen lokal geprüft. React-Prüfung: numerischer Zustand außerhalb React, bestehende Listener/Frame-Basis und dynamischer Three-Import erhalten. Kein neues Partikelfeld, keine Änderungen an Texten, Links oder Scrollstrecke. K4.2 nicht begonnen; kein Commit/Push.
 - **01.10.2026:** Auf Freigabe K4.1 als `f9d5459` committed, nicht gepusht. Anschließend K4.2 umgesetzt: vier ortsfeste Impulszentren, tangentialer Anteil/kohärente Eigenströmung, analytische Dämpfung, separate Scrollkräfte und unterschiedliche Innen-/Außenprofile mit harten Körper-/Halo-/Auslenkungsgrenzen. Maus-only, Scroll-only vor/zurück, Freeze, Rückkehr, Reduced Motion und Liquid lokal geprüft; neun neue Feldtests. K4.3 bleibt offen; keine Behauptung gleicher Referenzphysik.
 - **01.10.2026:** Zusatzauftrag M1 umgesetzt: aktueller Desktop-/Mobile-Eingabeweg proportional um 25 % reduziert (14,25 / 7,125 Viewporthöhen). Kanonische Effekte/Anker und Inhalte erhalten; zwei zusätzliche Tests und native Scroll-Rückwegproben. Gesamtstand: 44 Tests, TypeScript, Lint und Pages-Build bestanden. K4.2/M1 noch nicht committed oder gepusht.
+- **01.10.2026:** Auf Freigabe K4.2/M1 als `0ee100b` committed und auf `origin/main` gepusht; dadurch auch K4.1 (`f9d5459`) veröffentlicht. Anschließend K4.3: Feldversuch mit bewegten Dichtebereichen, GPU-Bahnen mit Position/Geschwindigkeit und Rückstellkraft ergänzt. Reine Attraktion führte zu übermäßiger Verdichtung; auf wechselnde Kompression/Auflockerung mit lokalen Wirbeln und stärkerer Rückstellkraft korrigiert. 54 Tests, TypeScript, Lint und Pages-Build bestanden; Desktop-GPU/Feldvergleich, Freeze/Rückkehr, lokale Mausreaktion, gerichteter Scrollkanal und Liquid geprüft. Mobile GPU-Basis und Menü bei tatsächlich 391 × 844 geprüft. Fremde Aufnahmen bleiben außerhalb des Repos. K4.3-Abschlusscommit/Push abschließend vom Nutzer freigegeben; K4.4 nicht begonnen, volle Geräte-/Referenzabnahme offen.

@@ -1,6 +1,6 @@
 # K4.2 — Lokales Partikelfeld und Nachlauf
 
-Stand: 01.10.2026. Implementiert und lokal geprüft, noch nicht committed/gepusht. K4.1 wurde zuvor als `f9d5459` committed. Keine finale visuelle Abnahme oder Behauptung identischer Referenzphysik. Separater Zusatzauftrag: [M1](m1-scroll-verification.md).
+Stand: 01.10.2026. Implementiert und lokal geprüft; zusammen mit M1 als `0ee100b` committed und auf `main` gepusht (einschließlich K4.1 `f9d5459`). Keine finale visuelle Abnahme oder Behauptung identischer Referenzphysik. Separater Zusatzauftrag: [M1](m1-scroll-verification.md). Die folgenden Ergebnisse dokumentieren K4.2 vor der [K4.3-GPU-Erweiterung](k4-3-verification.md).
 
 ## Umsetzung
 

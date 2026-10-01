@@ -1,6 +1,6 @@
 # K4.1 — Kugellokale Eingabe
 
-Stand: 01.10.2026. Implementiert und lokal geprüft, keine visuelle Abnahme der Partikelwirkung. Anschließend als `f9d5459` committed, nicht gepusht. Die folgenden Ergebnisse dokumentieren die K4.1-Basis ohne sichtbares Feld; der spätere Feldstand ist separat in [K4.2](k4-2-verification.md) dokumentiert.
+Stand: 01.10.2026. Implementiert und lokal geprüft, keine visuelle Abnahme der Partikelwirkung. Als `f9d5459` committed und mit `0ee100b` auf `main` gepusht. Die folgenden Ergebnisse dokumentieren die K4.1-Basis ohne sichtbares Feld; der spätere Feldstand ist separat in [K4.2](k4-2-verification.md) dokumentiert.
 
 ## Umsetzung
 

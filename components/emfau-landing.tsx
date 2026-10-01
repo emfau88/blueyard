@@ -125,7 +125,7 @@ export function EmfauLanding({ locale }: Props) {
   const pointerRef = useRef<ExperiencePointer>({ x: 0, y: 0, active: false });
   const pointerViewportRef = useRef({ width: 0, height: 0 });
   const renderOptionsRef = useRef<RenderOptions>({ view: "composite", freeze: false, loseContext: false,
-    particleMouse: true, particleScroll: true, particleFlow: true, particleDiagnostics: false, particleHitDebug: false });
+    particleMouse: true, particleScroll: true, particleFlow: true, particleModel: "auto", particleDiagnostics: false, particleHitDebug: false });
   const debugEnabled = useSyncExternalStore(subscribeDebugLocation, readDebugLocation, serverDebugLocation);
   const [debugReduced, setDebugReduced] = useState(false);
   const [debugUnits, setDebugUnits] = useState("5.25");
@@ -148,6 +148,7 @@ export function EmfauLanding({ locale }: Props) {
     if (!debugEnabled) {
       renderOptionsRef.current.particleHitDebug = false;
       renderOptionsRef.current.particleMouse = renderOptionsRef.current.particleScroll = renderOptionsRef.current.particleFlow = true;
+      renderOptionsRef.current.particleModel = "auto";
     }
   }, [debugEnabled]);
 
@@ -452,6 +453,7 @@ export function EmfauLanding({ locale }: Props) {
         <label><input type="checkbox" defaultChecked onChange={event => { renderOptionsRef.current.particleMouse = event.target.checked; }} /> Mauskanal Partikel</label>
         <label><input type="checkbox" defaultChecked onChange={event => { renderOptionsRef.current.particleScroll = event.target.checked; }} /> Scrollkanal Partikel</label>
         <label><input type="checkbox" defaultChecked onChange={event => { renderOptionsRef.current.particleFlow = event.target.checked; }} /> Eigenströmung Partikel</label>
+        <label>Partikeltechnik <select defaultValue="auto" onChange={event => { renderOptionsRef.current.particleModel = event.target.value === "field" ? "field" : "auto"; }}><option value="auto">GPU falls verfügbar</option><option value="field">Feld (Vergleich/Fallback)</option></select></label>
         <label><input type="checkbox" onChange={event => { renderOptionsRef.current.particleHitDebug = event.target.checked; }} /> Kugeltreffer anzeigen</label>
         <button type="button" onClick={() => { renderOptionsRef.current.loseContext = true; }}>WebGL-Ausfall prüfen</button>
       </aside> : null}

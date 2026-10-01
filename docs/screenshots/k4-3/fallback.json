@@ -1,0 +1,43 @@
+{
+  "sim": {
+    "bytes": 3104720,
+    "calls": 0,
+    "count": 38500,
+    "cpuMs": 0,
+    "mode": "gpu",
+    "passes": 0,
+    "reason": "float-mrt",
+    "sample": null,
+    "size": 197,
+    "steps": 0,
+    "time": 53.06690000000112,
+    "used": false
+  },
+  "stats": {
+    "calls": 5,
+    "cpuMs": 0.34,
+    "cssHeight": 900,
+    "cssWidth": 1441,
+    "fieldCpuMs": 0.044,
+    "format": "rgba16f-linear",
+    "frameMs": 18.72,
+    "geometries": 5,
+    "height": 900,
+    "liquidDetail": 1,
+    "liquidStrength": 0,
+    "maxFrameMs": 72.3,
+    "particleMode": "field",
+    "passes": 2,
+    "samples": 27,
+    "simulationBytes": 3104720,
+    "simulationCpuMs": 0.004,
+    "simulationPasses": 0,
+    "simulationReason": "float-mrt",
+    "simulationSteps": 0,
+    "textures": 6,
+    "totalCalls": 5,
+    "totalPasses": 2,
+    "view": "composite",
+    "width": 1441
+  }
+}

@@ -1,6 +1,6 @@
 # K4 — Konkreter Umsetzungsplan
 
-Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 committed (`f9d5459`, kein Push); K4.2 implementiert und lokal geprüft. K4.3 ist der nächste offene Entscheidungsschritt.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md), [K4.2-Verifikation](k4-2-verification.md). Separat freigegebener Zusatzauftrag: [M1 — 25 % kürzerer Eingabeweg](m1-scroll-verification.md).
+Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 (`f9d5459`) und K4.2/M1 (`0ee100b`) committed/gepusht. K4.3: GPU-Entscheidung und Umsetzung lokal auf Desktop sowie mobile GPU-Basis bei 391 × 844 geprüft; Abschlusscommit/Push freigegeben. Nächster Umsetzungsschritt K4.4.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md), [K4.2-Verifikation](k4-2-verification.md), [K4.3-Entscheidung/Verifikation](k4-3-verification.md). Separat freigegebener Zusatzauftrag: [M1 — 25 % kürzerer Eingabeweg](m1-scroll-verification.md).
 
 ## Ziel und Grenzen
 
@@ -62,13 +62,13 @@ Nicht enthalten: neue Games-/Labs-/Fasermodelle, zusätzliche Weltübergänge, T
 
 ### K4.3 — Entscheidungspunkt für die Partikeltechnik
 
-- [ ] Feldvariante mit denselben Eingabefolgen aus K4.0 prüfen. Bewegungsfolgen statt nur Screenshots sichern.
-- [ ] Feld behalten, wenn lokale Mitnahme, begrenzte Wirbel, sichtbarer Nachlauf und Rückkehr überzeugend zusammen funktionieren und die vereinbarte Bewegung getroffen wird.
-- [ ] GPU-Zustand nur ergänzen, falls unabhängige Bahnen/anhaltende Advektion für die beobachtete Wirkung nötig sind und das Feld diese nach dokumentierter Abstimmung nicht erreicht. Ein Feld wird nicht allein wegen niedrigerem Aufwand als ausreichend erklärt.
-- [ ] Falls nötig: Ping-Pong-Targets für Position/Geschwindigkeit, begrenzte Integrationsschritte, Rückstellkraft zur Ruheverteilung und kompakte Seeds. Update innerhalb des K2-Frames, anschließend bestehende Welt- und Liquid-Pässe; kein zweites rAF.
-- [ ] GPU-Erweiterung gegen Render-Target-/Float-Unterstützung prüfen; Feldvariante als funktionsfähigen Fallback erhalten. Zusätzliche Passzahl, Speicher und Cleanup dokumentieren; Aufwand vor weiterem Ausbau benennen.
+- [x] Feld und GPU bei festem Scrollstand und gleicher Kanaltrennung als zeitliche Stichproben vergleichen; GPU-Maus-only und Scroll-only zusätzlich prüfen. Referenz-Ruhefolge qualitativ beobachtet; eine vollständig kontrollierte Referenz-Eingabefolge bleibt K4.0/K4.6 offen, keine pixel- oder phasengleiche Messung behaupten.
+- [x] Entscheidung dokumentieren: Feld allein nicht als Bewegungsziel freigeben. Selbst stärkere kohärente Dichtebereiche bleiben an die Ruhepositionen gebunden; Feld als funktionierenden Fallback behalten.
+- [x] GPU-Zustand für weitergehende eigenständige Bahnen ergänzen. Wirkung und Grenzen nach dokumentiertem Feldversuch begründen; das beweist nicht, welche Simulation die Referenz intern verwendet.
+- [x] Zwei Ping-Pong-Targets mit je Position/Geschwindigkeit (RGBA32F), feste Schritte 1/120 s und höchstens acht Schritte pro Frame, begrenzte Geschwindigkeit/Radien und Rückstellkraft zur unveränderten Ruheverteilung. Deterministische Größen/Seeds erhalten. Update innerhalb des K2-Frames vor Welt-/Liquid-Pässen, kein zweites rAF.
+- [x] Float/MRT/Vertextextur/Framebuffer/Shader-Unterstützung und Teilfehler-Cleanup prüfen; Feld als Fallback erhalten. Zusätzliche Passzahl, Texturspeicher und Cleanup im [K4.3-Protokoll](k4-3-verification.md) dokumentiert. Automatische Fehlerfälle in Mocktests; tatsächlicher GPU-Betrieb und manuell gewählter Feldzweig im Desktopbrowser geprüft. Volle Geräteprüfung K4.5.
 
-**Beleg:** Entscheidungstext mit Wirkung, verbleibenden Abweichungen und vergleichbaren Messungen. GPU-Bahnen sind eine bedingte Erweiterung, nicht bereits zugesagter Bestandteil jeder Variante.
+**Beleg:** [K4.3-Entscheidung](k4-3-verification.md) mit eigenen zeitlichen Folgen, Diagnosewerten und Grenzen. GPU ist jetzt der Standard bei Unterstützung; andernfalls Feld. Visuelles Timing, Dichte, Tiefe und Referenzkräfte sind damit nicht final abgenommen.
 
 ### K4.4 — Charakter, Tiefe und Licht
 

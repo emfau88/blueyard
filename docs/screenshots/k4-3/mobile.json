@@ -1,0 +1,31 @@
+{
+  "debugPanels": 0,
+  "height": 844,
+  "input": null,
+  "stats": {
+    "calls": 5,
+    "cpuMs": 0.25,
+    "cssHeight": 844,
+    "cssWidth": 391,
+    "format": "rgba16f-linear",
+    "frameMs": 4.47,
+    "geometries": 5,
+    "height": 844,
+    "liquidDetail": 0,
+    "liquidStrength": 0,
+    "maxFrameMs": 8.4,
+    "particleMode": "gpu",
+    "passes": 2,
+    "samples": 113,
+    "simulationBytes": 1458000,
+    "simulationPasses": 1,
+    "simulationReason": "float-mrt",
+    "simulationSteps": 1,
+    "textures": 6,
+    "totalCalls": 6,
+    "totalPasses": 3,
+    "view": "composite",
+    "width": 391
+  },
+  "width": 391
+}
