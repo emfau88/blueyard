@@ -1,6 +1,6 @@
 # K4 — Konkreter Umsetzungsplan
 
-Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 (`f9d5459`) und K4.2/M1 (`0ee100b`) committed/gepusht. K4.3: GPU-Entscheidung und Umsetzung lokal auf Desktop sowie mobile GPU-Basis bei 391 × 844 geprüft; Abschlusscommit/Push freigegeben. Nächster Umsetzungsschritt K4.4.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md), [K4.2-Verifikation](k4-2-verification.md), [K4.3-Entscheidung/Verifikation](k4-3-verification.md). Separat freigegebener Zusatzauftrag: [M1 — 25 % kürzerer Eingabeweg](m1-scroll-verification.md).
+Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 (`f9d5459`) und K4.2/M1 (`0ee100b`) committed/gepusht. K4.3: GPU-Entscheidung und Umsetzung lokal auf Desktop sowie mobile GPU-Basis bei 391 × 844 geprüft, als `7bc7f8e` committed/gepusht. Nächster Umsetzungsschritt K4.4.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md), [K4.2-Verifikation](k4-2-verification.md), [K4.3-Entscheidung/Verifikation](k4-3-verification.md). Separat freigegebener Zusatzauftrag: [M1 — 25 % kürzerer Eingabeweg](m1-scroll-verification.md).
 
 ## Ziel und Grenzen
 

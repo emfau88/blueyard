@@ -1,6 +1,6 @@
 # K4.3 — Feldentscheidung und GPU-Bahnen
 
-Stand: 01.10.2026. Technisch implementiert und lokal auf Desktop sowie als mobile GPU-Basis bei 391 × 844 geprüft; Abschlusscommit/Push vom Nutzer freigegeben. K4.1 und K4.2/M1 sind bis `0ee100b` auf `main` gepusht. Keine finale Referenz-/Nutzerabnahme. Nächster Umsetzungsschritt K4.4; vollständige Geräteprüfung K4.5.
+Stand: 01.10.2026. Technisch implementiert und lokal auf Desktop sowie als mobile GPU-Basis bei 391 × 844 geprüft; als `7bc7f8e` committed und erfolgreich auf `main` gepusht. K4.1 und K4.2/M1 sind bis `0ee100b` ebenfalls gepusht. Keine finale Referenz-/Nutzerabnahme. Nächster Umsetzungsschritt K4.4; vollständige Geräteprüfung K4.5.
 
 ## Entscheidung und Beobachtungsgrenzen
 
@@ -58,4 +58,4 @@ In den zeitlichen Stichproben: Feld mittlere rAF-Intervalle 6,33–7,82 ms, GPU 
 - [ ] K4.4: Dichte/Größe/Licht, Kameraraumtiefe und transparente Hülle gemeinsam abstimmen. Aktuelle Wolken können noch zu flächig wirken; Verdichtung/Stärke/Timing sind nicht final freigegeben.
 - [ ] K4.5: tatsächliche mobile GPU-/Fallback-, Touch-, Betriebssystem-Reduced-Motion-, Tab-/Kontextverlust- und Langzeitprüfungen.
 - [ ] K4.6: dichtere, kontrollierte Referenz-Eingabefolgen, endgültiger Bewegungsvergleich und Nutzerabnahme. GPU-Technik allein macht die Wirkung nicht automatisch gleichwertig.
-- [x] Abschlusscommit/Push für K4.3 vom Nutzer ausdrücklich freigegeben. Veröffentlichung mit dem Abschlusscommit dieses Pakets; konkrete Commit-ID im Git-Verlauf/Abschlussbericht, kein Vorgriff auf erfolgreiche Pages-Auslieferung.
+- [x] Abschlusscommit/Push für K4.3 vom Nutzer ausdrücklich freigegeben und mit `7bc7f8e` erfolgreich ausgeführt. Dokumentationsabschluss nachgeführt; erfolgreiche Git-Veröffentlichung ist kein Vorgriff auf bestätigte Pages-Auslieferung.
