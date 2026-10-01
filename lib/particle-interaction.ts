@@ -87,7 +87,7 @@ export function createParticleInteractionState(): ParticleInteractionState {
 /** Samples actual screen displacement, not the damped velocity of previous
  * local hits. Reprojecting both screen points under THIS frame's matrices
  * prevents camera/group motion from becoming an artificial mouse force.
- * K4.2 will consume these channels for its bounded field and impulse state. */
+ * The bounded field and impulse state consume these independent channels. */
 export function sampleParticleInteraction(state: ParticleInteractionState, frame: ExperienceFrame,
   projection: ParticleProjection, options: ParticleInteractionOptions): ParticleInteractionFrame {
   const effects = options.visible && !frame.reducedMotion && !options.freeze;

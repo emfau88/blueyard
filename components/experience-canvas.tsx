@@ -9,6 +9,7 @@ import { createIntroParticles, particleVertexShader, particleFragmentShader, she
 import { createResourceScope, renderDimensions, type ExperienceDraw, type RenderOptions } from "@/lib/experience-input";
 import { createWorldRenderer } from "@/lib/world-renderer";
 import { createParticleInteractionState, sampleParticleInteraction } from "@/lib/particle-interaction";
+import { createParticleFieldState, stepParticleField, PARTICLE_FIELD } from "@/lib/particle-field";
 
 type Props = {
   drawRef: RefObject<ExperienceDraw | null>;
@@ -68,6 +69,9 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
       const contourOrb = new THREE.Mesh(geometry, contourMaterial);
       coldGroup.add(contourOrb);
       const mobile = mount.clientWidth < 700;
+      const fieldState = createParticleFieldState();
+      const impulseCenters = Array.from({ length: PARTICLE_FIELD.slots }, () => new THREE.Vector4());
+      const impulseVectors = Array.from({ length: PARTICLE_FIELD.slots }, () => new THREE.Vector3());
       const makeCloud = (outside: boolean) => {
         const data = createIntroParticles(outside ? (mobile ? 3200 : 6500) : (mobile ? 15000 : 32000), outside);
         const cloudGeometry = new THREE.BufferGeometry();
@@ -80,10 +84,17 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
           transparent: true, depthWrite: false, depthTest: false,
           blending: outside ? THREE.AdditiveBlending : THREE.NormalBlending,
           uniforms: { uTime: { value: 0 }, uPixelRatio: { value: 1 }, uOutside: { value: outside ? 1 : 0 },
-            uOpacity: { value: 1 }, uFlowEnabled: { value: 1 } },
+            uOpacity: { value: 1 }, uFlowEnabled: { value: 1 },
+            uImpulseCenter: { value: impulseCenters }, uImpulseVector: { value: impulseVectors }, uScrollImpulse: { value: 0 } },
         });
         resources.add(() => cloudMaterial.dispose());
         const cloud = new THREE.Points(cloudGeometry, cloudMaterial);
+        // Vertex displacement is not reflected in CPU geometry bounds.
+        cloudGeometry.computeBoundingSphere();
+        if (cloudGeometry.boundingSphere) {
+          cloudGeometry.boundingSphere.center.set(0, 0, 0);
+          cloudGeometry.boundingSphere.radius = outside ? 2.16 : 1.38;
+        }
         cloud.renderOrder = outside ? 3 : 2;
         group.add(cloud);
         return cloud;
@@ -130,7 +141,7 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
       const fromColor = new THREE.Color(), toColor = new THREE.Color();
       let entrance = 0;
       let firstFrame = true;
-      let frameCount = 0, intervalTotal = 0, intervalMax = 0, cpuTotal = 0;
+      let frameCount = 0, intervalTotal = 0, intervalMax = 0, cpuTotal = 0, fieldCpuTotal = 0;
       let reportTime = performance.now();
       const render: ExperienceDraw = (frame) => {
         if (disposed) return;
@@ -168,6 +179,7 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
           }
           coldGroup.rotation.set(.1, lerp(from.rotation[1], to.rotation[1]) + time * .025, -.15);
           const warm = warmSceneOpacity(progress);
+          const fieldStart = optionsRef.current.particleDiagnostics ? performance.now() : 0;
           // Projection must use the pose from this same shared frame, before
           // rendering. The numeric sampler reprojects both screen positions
           // under these matrices rather than subtracting hits of old poses.
@@ -182,6 +194,16 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
             flow: optionsRef.current.particleFlow, freeze: optionsRef.current.freeze,
             visible: warm > 0 && revealedRef.current, width, height });
           inside.material.uniforms.uFlowEnabled.value = outside.material.uniforms.uFlowEnabled.value = interaction.flowEnabled ? 1 : 0;
+          stepParticleField(fieldState, frame, interaction, { mouse: optionsRef.current.particleMouse,
+            scroll: optionsRef.current.particleScroll, freeze: optionsRef.current.freeze,
+            visible: warm > 0 && revealedRef.current, width, height });
+          for (let i = 0; i < PARTICLE_FIELD.slots; i++) {
+            const impulse = fieldState.impulses[i];
+            impulseCenters[i].set(...impulse.center, impulse.age);
+            impulseVectors[i].fromArray(impulse.vector);
+          }
+          inside.material.uniforms.uScrollImpulse.value = outside.material.uniforms.uScrollImpulse.value = fieldState.scroll;
+          const fieldCpuMs = optionsRef.current.particleDiagnostics ? performance.now() - fieldStart : 0;
           hitMarker.visible = optionsRef.current.particleDiagnostics && optionsRef.current.particleHitDebug && interaction.pointer.influence > 0;
           hitMarker.position.fromArray(interaction.pointer.point);
           shellMaterial.uniforms.uOpacity.value = warm;
@@ -205,22 +227,24 @@ export function ExperienceCanvas({ drawRef, optionsRef, revealed, fallback, onLo
           canvas.dataset.frameId = String(frame.id);
           if (frame.intervalMs > 0 && frame.intervalMs < 250) {
             intervalTotal += frame.intervalMs; intervalMax = Math.max(intervalMax, frame.intervalMs);
-            cpuTotal += pipeline.stats.cpuMs; frameCount++;
+            cpuTotal += pipeline.stats.cpuMs; fieldCpuTotal += fieldCpuMs; frameCount++;
           }
           if (performance.now() - reportTime >= 500) {
             canvas.dataset.renderStats = JSON.stringify({ ...pipeline.stats, view: optionsRef.current.view,
               frameMs: frameCount ? +(intervalTotal / frameCount).toFixed(2) : 0,
               maxFrameMs: +intervalMax.toFixed(2), cpuMs: frameCount ? +(cpuTotal / frameCount).toFixed(2) : 0,
-              samples: frameCount, cssWidth: width, cssHeight: height });
+              samples: frameCount, cssWidth: width, cssHeight: height,
+              ...(optionsRef.current.particleDiagnostics ? { fieldCpuMs: frameCount ? +(fieldCpuTotal / frameCount).toFixed(3) : 0 } : {}) });
             if (optionsRef.current.particleDiagnostics) {
               diagnosticPoint.fromArray(interaction.pointer.point).applyMatrix4(group.matrixWorld).project(camera);
               canvas.dataset.particleInteraction = JSON.stringify({ ...interaction, frameId: frame.id,
+                field: { impulses: fieldState.impulses, scroll: fieldState.scroll },
                 pointerNdc: [frame.pointer.x, frame.pointer.y],
                 projectedNdc: interaction.pointer.influence > 0 ? [diagnosticPoint.x, diagnosticPoint.y] : null,
                 channels: { mouse: optionsRef.current.particleMouse, scroll: optionsRef.current.particleScroll,
                   flow: optionsRef.current.particleFlow } });
             } else delete canvas.dataset.particleInteraction;
-            intervalTotal = intervalMax = cpuTotal = frameCount = 0;
+            intervalTotal = intervalMax = cpuTotal = fieldCpuTotal = frameCount = 0;
             reportTime = performance.now();
           }
           if (firstFrame) { firstFrame = false; onLoad(1); }

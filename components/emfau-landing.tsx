@@ -15,7 +15,7 @@ import { ExperienceLoader } from "@/components/experience-loader";
 import { ExperienceGateway } from "@/components/experience-gateway";
 import { gatewayCardMotion, warmSceneOpacity } from "@/lib/gateway-motion";
 import { followScroll, openingTextMotion, SCROLL_UNITS } from "@/lib/opening-motion";
-import { advanceResponsiveScroll, mobileSceneTrack, mobileScrollDistance } from "@/lib/mobile-experience";
+import { advanceResponsiveScroll, mobileSceneTrack, responsiveScrollDistance } from "@/lib/mobile-experience";
 import { initialExperienceFrame, sampleExperienceFrame, pointerInViewport, type ExperienceDraw, type ExperiencePointer, type RenderOptions, type RenderView } from "@/lib/experience-input";
 import { loadingProgress, loadingComplete, LOAD_TIMEOUT_MS, LOADER_EXIT_MS } from "@/lib/experience-loading";
 import { copy, type Locale } from "@/lib/content";
@@ -295,7 +295,7 @@ export function EmfauLanding({ locale }: Props) {
         if (debugEnabled) root.dataset.input = JSON.stringify(frame);
         const height = root.clientHeight;
         const mobile = root.clientWidth < 700;
-        root.dataset.scrollDistance = (mobile ? mobileScrollDistance(progressRef.current) : frame.scrollUnits).toFixed(3);
+        root.dataset.scrollDistance = responsiveScrollDistance(progressRef.current, mobile).toFixed(3);
         const tracks = openingTextMotion(progressRef.current, height, mobile);
         root.style.setProperty("--intro-y", `${tracks.intro}px`);
         root.style.setProperty("--manifest-y", `${mobile ? tracks.mobileManifesto : tracks.manifesto}px`);

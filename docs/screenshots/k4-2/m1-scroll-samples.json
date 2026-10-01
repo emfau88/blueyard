@@ -1,0 +1,71 @@
+{
+  "mobileForward": {
+    "distance": "0.219",
+    "input": {
+      "delta": 0.008400000000023283,
+      "id": 194136,
+      "intervalMs": 8.400000000023283,
+      "pointer": {
+        "active": true,
+        "velocityX": 0,
+        "velocityY": 0,
+        "x": -0.07839575198041926,
+        "y": -0.5396126492676192
+      },
+      "progress": 0.02455807702641101,
+      "reducedMotion": false,
+      "scrollUnits": 0.4666034635018092,
+      "scrollVelocity": 0.057066686811973064,
+      "time": 620.5118999994703
+    },
+    "units": "0.467"
+  },
+  "desktopForward": {
+    "distance": "0.219",
+    "input": {
+      "delta": 0.005700000000069849,
+      "id": 256129,
+      "intervalMs": 5.700000000069849,
+      "pointer": {
+        "active": true,
+        "velocityX": 0,
+        "velocityY": 0,
+        "x": -0.16714287832350905,
+        "y": -0.4441921495919223
+      },
+      "progress": 0.015345028653968517,
+      "reducedMotion": false,
+      "scrollUnits": 0.2915555444254018,
+      "scrollVelocity": 1.6402652933980978e-51,
+      "time": 919.2994000000637
+    },
+    "units": "0.292"
+  },
+  "desktopReverse": {
+    "distance": "0.000",
+    "units": "0.000"
+  },
+  "desktopLiquid": {
+    "distance": "3.938",
+    "stats": {
+      "calls": 7,
+      "cpuMs": 0.26,
+      "cssHeight": 900,
+      "cssWidth": 1441,
+      "fieldCpuMs": 0.021,
+      "format": "rgba16f-linear",
+      "frameMs": 4.26,
+      "geometries": 4,
+      "height": 900,
+      "liquidDetail": 1,
+      "liquidStrength": 0.12,
+      "maxFrameMs": 8.3,
+      "passes": 3,
+      "samples": 118,
+      "textures": 2,
+      "view": "composite",
+      "width": 1441
+    },
+    "units": "5.250"
+  }
+}

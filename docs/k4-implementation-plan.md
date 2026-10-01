@@ -1,12 +1,12 @@
 # K4 — Konkreter Umsetzungsplan
 
-Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 implementiert und lokal geprüft. Sichtbares Feld/Nachlauf ab K4.2 noch nicht begonnen.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md).
+Stand: 01.10.2026. **K4.0-Prüfbasis erhoben; K4.1 committed (`f9d5459`, kein Push); K4.2 implementiert und lokal geprüft. K4.3 ist der nächste offene Entscheidungsschritt.** Ergebnisse und verbleibende Messlücken: [K4.0-Baseline](k4-0-baseline.md), [K4.1-Verifikation](k4-1-verification.md), [K4.2-Verifikation](k4-2-verification.md). Separat freigegebener Zusatzauftrag: [M1 — 25 % kürzerer Eingabeweg](m1-scroll-verification.md).
 
 ## Ziel und Grenzen
 
 Die warme Eröffnungskugel erhält lokale, gerichtete Partikelreaktionen auf Maus und Scrollen, begrenzten Nachlauf und abgestimmte Tiefe/Lichtwirkung. Der gemeinsame Frame-Vertrag aus K2 und die Liquid-Komposition aus K3 bleiben bestehen.
 
-Nicht enthalten: neue Games-/Labs-/Fasermodelle, zusätzliche Weltübergänge, Texte, Navigation, Logo, Individualisierung oder Änderungen der mobilen Scrollstrecke. Die runde Hüllengeometrie bleibt unverändert. Globale Kugelrotation und Liquid-Verzerrung sind kein Ersatz für lokale Partikelbewegung.
+Nicht enthalten: neue Games-/Labs-/Fasermodelle, zusätzliche Weltübergänge, Texte, Navigation, Logo oder Individualisierung. K4 selbst verändert die Scrollstrecke nicht; der separate Zusatzauftrag M1 kürzt ausschließlich deren Eingabezuordnung. Die runde Hüllengeometrie bleibt unverändert. Globale Kugelrotation und Liquid-Verzerrung sind kein Ersatz für lokale Partikelbewegung.
 
 ## Ausgangspunkt im geprüften Code
 
@@ -49,12 +49,14 @@ Nicht enthalten: neue Games-/Labs-/Fasermodelle, zusätzliche Weltübergänge, T
 
 ### K4.2 — Strömung, Impulse und Rückkehr
 
-- [ ] Startpositionen/Seeds unverändert als Ruheverteilung verwenden. Zunächst Vertexshader-Feld, keine CPU-Schleife zum Hochladen aller Positionen pro Frame.
-- [ ] Kleinen begrenzten Impulsspeicher mit lokalen Zentren, Richtung, Stärke und Alter aufbauen (Startentwurf: maximal vier Impulse). Verlassene Einflussstellen dürfen kurz nachlaufen; bloßes Bewegen eines einzigen Uniform-Zentrums wäre dafür unzureichend.
-- [ ] Räumlich weich begrenztes Einflussfeld: gerichteter Anteil aus Mausbewegung, tangentialer Wirbelanteil und kohärente Eigenströmung. Keine gleichphasige Sinusverschiebung der gesamten Wolke; Stärke und Gesamtauslenkung deckeln.
-- [ ] Zeitbasierte Dämpfung/gegebenenfalls analytischen Federzustand verwenden; unabhängig von 30/60/120-Hz-Eingabe. Impulse fallen auf null zurück, Partikel kehren zur laufenden Ruheverteilung zurück. Erste Prüftoleranz: nach 3 Sekunden ohne Eingabe höchstens 1 % der vorherigen Impulsstärke; visuelles Timing danach anhand der Beobachtung abstimmen.
-- [ ] Vorzeichenbehaftete, begrenzte Scrollgeschwindigkeit separat einkoppeln. Keine Aufsummierung zu dauerhaft wachsender Auslenkung, keine Veränderung von Scrollposition, Kameraweg, Hülle oder Liquid-Grenzlage.
-- [ ] Innen- und Außenwolke teilen das Feld, erhalten aber eigene Radien, Gewichtung und Verzögerung. Innenauslenkung auf den erlaubten Körperbereich begrenzen; äußere Funken dürfen im definierten Halo bleiben.
+- [x] Startpositionen/Seeds unverändert als Ruheverteilung verwenden. Vertexshader-Feld aus `lib/particle-field.ts`; keine CPU-Schleife zum Hochladen aller Positionen pro Frame.
+- [x] Vier begrenzte Impulszentren mit Richtung, Stärke und Alter. Alte Orte bleiben für den Nachlauf erhalten; Ringpuffer nach 0,14 s oder 0,24 lokalen Abstandseinheiten weiterschalten. Einzelimpuls maximal 0,24.
+- [x] Kubisch weich begrenzter Einfluss, gerichtete Mitnahme, tangentialer Wirbelanteil und kohärente Eigenströmung statt gleichphasiger Wolkenverschiebung. Gesamtauslenkung innen ≤ 0,28 / außen ≤ 0,38.
+- [x] Analytische Dämpfung `exp(-2,4 × dt)`, exakte Integration bei gehaltenem Eingang. 30/60/120-Hz-Tests: nach 3 s rund 0,075 % Reststärke (< 1 %). Diskrete Zentrenwechsel einer bewegten Spur sind nicht als bitidentisch bei allen Frameraten zugesagt; endgültiges visuelles Timing bleibt K4.3/K4.6.
+- [x] Separater vorzeichenbehafteter Scrollimpuls, auf ±1 begrenzt und gedämpft; keine Aufsummierung der Scrollposition. Hülle, Kameraweg und Liquid-Grenzlage unverändert.
+- [x] Gemeinsame Feldzentren, unterschiedliche Innen-/Außenradien, Gewichtung und Reaktionsverzögerung (0,025 / 0,075 s). Innenradius ≤ 1,38, Außenhalo 1,46–2,16; Radius- und Auslenkungsgrenze gemeinsam geprüft.
+
+**Lokaler Prüfstand:** Neun Feldtests; mit M1 insgesamt 44 Tests, TypeScript, Lint und Pages-Build bestanden. Maus-only bei festem Scrollstand, Freeze/Rückkehr, Scroll-only vor/zurück und Liquid auf Desktop/Mobile geprüft. [Belege und Grenzen](k4-2-verification.md). Keine GPU-Advektion und keine finale Material-/Referenzabnahme vorweggenommen.
 
 **Prüfung:** Maus-only bei festem Scrollstand; Scroll-only ohne Zeigerkraft; Stillstand und Rückweg; maximal schnelle Eingaben; endliche Werte, harte Auslenkungsgrenze, Abklingen und stabile Silhouette. Nachlauf darf die Partikel kurz bewegen, aber nicht die Szene weiterblättern.
 
@@ -92,7 +94,7 @@ Nicht enthalten: neue Games-/Labs-/Fasermodelle, zusätzliche Weltübergänge, T
 - [ ] `tests/experience-k4.test.mjs`: Transformationszuordnung, Maus-/Scrolltrennung, Impulsgrenzen, Rückkehr, vergleichbare Dämpfung bei unterschiedlichen Frame-Schritten, Resume/Freeze/Reduced Motion, Cleanup.
 - [ ] Bestehende Tests für runde Hülle, gemeinsamen Frame, mobile Zuordnung und K3-Endpunkte weiter bestehen lassen. `npm test`, Lint, TypeScript und Pages-Build ausführen.
 - [ ] Eigene Bild-/Bewegungsbelege und Messwerte unter `docs/` dokumentieren; fremde Aufnahmen bleiben privat. Beispielsweise `docs/k4-verification.md` erst mit tatsächlichen Ergebnissen anlegen.
-- [ ] Desktop und Mobile vorwärts/rückwärts einschließlich Menü, Links und DE/EN prüfen. Keine entfernten Inhalte oder Änderungen der mobilen Scrollstrecke.
+- [ ] Desktop und Mobile vorwärts/rückwärts einschließlich Menü, Links und DE/EN prüfen. Keine entfernten Inhalte; Scrollverkürzung ausschließlich im separat freigegebenen M1-Auftrag.
 - [ ] Technisch implementiert, lokal geprüft und visuell vom Nutzer freigegeben als drei getrennte Zustände in der Roadmap führen. Offene Abweichungen nicht durch bestandene Tests als erledigt markieren.
 - [ ] Commit/Push erst mit entsprechender Freigabe; die K4.0-Prüfung allein autorisiert keine Veröffentlichung.
 

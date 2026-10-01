@@ -14,7 +14,9 @@ Stand: 01.10.2026. Zusammenfassung der bisherigen lokalen Prüfungen, keine fina
 | K3 | Bildverzerrung beider Welten, Stillstand/Rückweg, Mobile/Reduced Motion, scharfe DOM-Texte | Finale Licht-/Liquid-Abstimmung und lokale Partikelbahnen K4 |
 | K3.1 | [Erste Liquid-Nacharbeit](k3-1-liquid-verification.md): breiteres verschachteltes Feld, lokale Lichtspitzen; Desktop/Mobile-Vergleich, Rückweg, Reduced Motion, frischer Browserstart ohne Shaderfehler; 25 Tests, Typen, Lint, Pages-Build | Synchronisierte Bewegungsabnahme und finale Abstimmung mit dem räumlichen Web-Modell in Bulk 8/G1; keine Gleichwertigkeitsfreigabe |
 | K4.0 | [Lokale Baseline](k4-0-baseline.md): sechs Desktop-/Mobile-Positionen, Mengen, Live-Stichproben, Freeze/Rückweg und Renderdiagnose | Zusätzliche Referenzkräfte/Nachlauf quantitativ, gesamte K4-Effektimplementierung und Nutzerabnahme |
-| K4.1 | [Kugellokale Eingabe](k4-1-verification.md): Hüllentreffer/weicher Halo, Transformationen, Bildschirmbewegung ohne künstlichen Scroll-Mausimpuls; unabhängige Kanäle; 33 Tests, TypeScript, Lint, Pages-Build und Desktop-/Mobile-Browserprüfung | Sichtbares Feld und Nachlauf K4.2, Material/Tiefe, vollständige K4-Abnahme und echte Touchgeräte |
+| K4.1 | [Kugellokale Eingabe](k4-1-verification.md): Hüllentreffer/weicher Halo, Transformationen, Bildschirmbewegung ohne künstlichen Scroll-Mausimpuls; unabhängige Kanäle; 33 Tests, TypeScript, Lint, Pages-Build und Desktop-/Mobile-Browserprüfung; committed `f9d5459`, nicht gepusht | Material/Tiefe, vollständige K4-Abnahme und echte Touchgeräte |
+| K4.2 | [Lokales Feld/Nachlauf](k4-2-verification.md): vier begrenzte Zentren, Maus-/Scroll-only, Freeze und Rückkehr, Innen-/Außengrenzen, 30/60/120-Hz-Dämpfung, Desktop/Mobile-Liquid | K4.3 Feld-/GPU-Entscheidung, Referenzbewegung, Material/Tiefe und vollständige Lifecycle-/Geräteabnahme |
+| M1 | [25 % kürzerer Scrollweg](m1-scroll-verification.md): Desktop 14,25 / Mobile 7,125 Eingabehöhen; alle kanonischen Anker/Effekte erhalten, native Vor-/Rückwegprobe; 44 Tests, TypeScript, Lint, Pages-Build | Subjektive Nutzerabnahme und echte Touchgeräte; noch kein Commit/Push |
 
 ## Render- und Eingabevertrag
 
@@ -32,6 +34,7 @@ Eigene Vorschauaufnahmen liegen unter [screenshots/](screenshots/). Beispiele:
 - [K3 Bildverzerrung](screenshots/k3-local-middle.png) gegenüber [neutraler Komposition](screenshots/k3-local-neutral.png)
 - [K3 Rückweg](screenshots/k3-local-reverse-settled.png), [Mobil](screenshots/k3-local-mobile.png) und [Reduced Motion](screenshots/k3-local-reduced.png)
 - [K3.1 Anfang](screenshots/k3-1/desktop-early.jpg), [Mitte](screenshots/k3-1/desktop-middle.jpg), [Ende](screenshots/k3-1/desktop-late.jpg) und [Mobil](screenshots/k3-1/mobile-middle.jpg)
+- [K4.2 Ruhe](screenshots/k4-2/desktop-baseline.jpg), [lokaler Impuls](screenshots/k4-2/desktop-impulse-frozen.jpg), [Rückkehr](screenshots/k4-2/desktop-return.jpg) und [Liquid nach M1](screenshots/k4-2/desktop-liquid-short-scroll.jpg)
 
 Die Aufnahmen stammen aus unterschiedlichen Entwicklungsständen und bilden nicht zwingend die aktuellen Texte ab. Geprüfte Viewports unter anderem 1281 × 721, 1282 × 722, 1441 × 900 und 391 × 844. Mobile Viewports im Desktopbrowser sind kein Ersatz für echte Geräte- oder Touchprüfungen.
 
@@ -40,6 +43,8 @@ Die Aufnahmen stammen aus unterschiedlichen Entwicklungsständen und bilden nich
 Nach dem Textupdate bestanden 21 Tests sowie TypeScript und Lint. M0 ergänzte vier Tests: zur K4.0-Baseline wurden die bestehenden 25 Tests erneut erfolgreich ausgeführt. Frühere Blöcke dokumentierten 3 Tests (Bulk 6), 4 (Bulk 7), 7 (K1), 15 (K2) und 20 (K3). Die Quelltext-/Logiktests ersetzen keine GPU-Bildprüfung oder visuelle Nutzerabnahme.
 
 K4.1 ergänzt acht numerische Tests (insgesamt 33 bestanden), mit Three.js-Ray/Sphere als unabhängigem Vergleich für die eigene Matrix-/Treffermathematik. TypeScript, Lint und Pages-Build bestanden. Die React-Prüfliste bestätigte numerischen Zustand außerhalb React, denselben Frame-Takt und keine zusätzlichen globalen Eingabelistener; Three.js bleibt dynamisch geladen.
+
+K4.2 ergänzt neun Feldtests, M1 zwei zusätzliche Zuordnungstests: aktuell 44/44 bestanden; TypeScript, Lint und Pages-Build erfolgreich. Feldzustand bleibt außerhalb React; konstante Uniformanzahl, keine CPU-Positionsuploads oder neue Frame-Schleife. Die gesonderte lokale Feld-CPU-Diagnose ist kein GPU-Benchmark. Wirkungsbelege und Grenzen stehen im K4.2-Protokoll.
 
 ```sh
 npm test
@@ -52,7 +57,7 @@ Lokale Renderdiagnose: `?renderDebug=1`, auf der öffentlichen Domain deaktivier
 
 ## Nächste Prüfungen
 
-- [ ] K4: lokale Partikelreaktion, Einflussbereich, Richtung, Stärke, Nachlauf und Rückkehr zur Grundverteilung
+- [ ] K4.3–K4.6: Feld-/GPU-Entscheidung, Referenzbewegung, Material/Tiefe, vollständige Geräte-/Lifecycle-Prüfung und Nutzerabnahme (begrenzte lokale Reaktion/Rückkehr bereits K4.2 geprüft)
 - [ ] Bulk 8/G1: räumliche Faserstruktur mit finalem Licht und Liquid-Einstieg
 - [ ] Weitere Games-/Labs-Modelle und ihre vollständigen Übergänge
 - [ ] Langsam/schnell scrollen, Stillstand, Rückwärtsweg, Maus und Touch getrennt prüfen

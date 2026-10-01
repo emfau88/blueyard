@@ -1,10 +1,13 @@
 import { advanceScroll, SCROLL_UNITS, smoothRange } from "./opening-motion.ts";
 import { experienceScenes } from "./experience-scenes.ts";
 
-export const MOBILE_SCROLL_UNITS = 9.5;
+export const SCROLL_INPUT_SCALE = .75;
+export const DESKTOP_SCROLL_UNITS = SCROLL_UNITS * SCROLL_INPUT_SCALE;
+const BASE_MOBILE_SCROLL_UNITS = 9.5;
+export const MOBILE_SCROLL_UNITS = BASE_MOBILE_SCROLL_UNITS * SCROLL_INPUT_SCALE;
 
 // Compress input distance, not the shared render timeline. Every effect/keyframe
-// remains reachable; links, scene anchors and desktop motion stay unchanged.
+// remains reachable; links, scene anchors and render motion stay unchanged.
 const mobileStops = [
   { timeline: 0, scroll: 0 },
   { timeline: 2, scroll: 1.25 },
@@ -13,7 +16,7 @@ const mobileStops = [
   { timeline: 6.5, scroll: 4.1 },
   { timeline: 10.5, scroll: 5.75 },
   { timeline: 13.5, scroll: 7.15 },
-  { timeline: SCROLL_UNITS, scroll: MOBILE_SCROLL_UNITS },
+  { timeline: SCROLL_UNITS, scroll: BASE_MOBILE_SCROLL_UNITS },
 ] as const;
 
 function mapDistance(value: number, input: "timeline" | "scroll", output: "timeline" | "scroll") {
@@ -29,12 +32,16 @@ function mapDistance(value: number, input: "timeline" | "scroll", output: "timel
 }
 
 export function mobileScrollDistance(progress: number) {
-  return mapDistance(progress * SCROLL_UNITS, "timeline", "scroll");
+  return mapDistance(progress * SCROLL_UNITS, "timeline", "scroll") * SCROLL_INPUT_SCALE;
+}
+
+export function responsiveScrollDistance(progress: number, mobile: boolean) {
+  return mobile ? mobileScrollDistance(progress) : Math.max(0, Math.min(1, progress)) * DESKTOP_SCROLL_UNITS;
 }
 
 export function advanceResponsiveScroll(progress: number, deltaPixels: number, height: number, mobile: boolean) {
-  if (!mobile) return advanceScroll(progress, deltaPixels, height);
-  const distance = mobileScrollDistance(progress) + deltaPixels / Math.max(1, height);
+  if (!mobile) return advanceScroll(progress, deltaPixels / SCROLL_INPUT_SCALE, height);
+  const distance = (mobileScrollDistance(progress) + deltaPixels / Math.max(1, height)) / SCROLL_INPUT_SCALE;
   return mapDistance(distance, "scroll", "timeline") / SCROLL_UNITS;
 }
 
